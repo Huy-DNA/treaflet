@@ -8,8 +8,7 @@
 
 <style lang="scss" scoped>
     .content {
-        margin-left: 15em;
-        margin-right: 15em;
+        margin: 0;
         line-height: 1.7;
         min-height: 100vh;
     }

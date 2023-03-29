@@ -46,7 +46,7 @@
         text-overflow: ellipsis;
         
         height: 600px;
-        max-width: 450px;
+        max-width: 340px;
     }
 
     div.card:hover { 

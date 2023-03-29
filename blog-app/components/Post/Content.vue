@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class='post-content'>
         <div class='post-header'>
             <h2>{{ title }}</h2>
             <p>Created At: {{ createdAt }}. Modified At: {{ modifiedAt }}</p>
@@ -20,6 +20,11 @@
 </script>
 
 <style lang="scss" scoped>
+    .post-content {
+        padding-left: 5vw;
+        padding-right: 5vw;
+    }
+
     .post-header h2 {
         color: $green;
         font-size: 3em;
