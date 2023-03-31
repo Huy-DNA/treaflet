@@ -46,9 +46,7 @@
         text-overflow: ellipsis;
         
         height: 600px;
-        max-width: 450px;
     }
-
     div.card:hover { 
         background-color: $light-blue;
         border-color: $light-blue;
@@ -80,4 +78,22 @@
         color: $white;
         line-height: 1.5;
     }
+
+
+    div.card {
+        width: 85vw;
+    }
+
+    @media(min-width: 420px) {
+        div.card {
+            width: 70vw;
+        }
+    }
+
+    @media(min-width: 600px) {
+        div.card {
+            max-width: 350px;
+        }
+    }
+
 </style>

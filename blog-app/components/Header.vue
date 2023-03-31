@@ -11,18 +11,6 @@
 </template>
 
 <style lang='scss' scoped>
-    header {
-        border-bottom: 5px solid $silver;
-        margin-bottom: 30px;
-    }
-
-    h1 {
-        font-family: 'Lato', sans-serif;
-        font-size: 50px;
-        justify-content: center;
-        display: flex;
-    }
-
     .blue {
         color: $blue;
     }
@@ -31,4 +19,22 @@
         color: $pink-red;
     }
 
+    header {
+        border-bottom: 5px solid $silver;
+        margin-bottom: 30px;
+    }
+
+    h1 {
+        margin-top: 80px;
+        font-family: 'Lato', sans-serif;
+        font-size: 50px;
+        justify-content: center;
+        display: flex;
+    }
+
+    @media(min-width: 500px) {
+        h1 {
+            margin-top: 40px;
+        }
+    }
 </style>

@@ -25,6 +25,10 @@
         align-items: center;
     }
 
+    p {
+        text-align: center;
+    }
+
     p.title {
         font-size: 30px;
         margin-bottom: 2px;
