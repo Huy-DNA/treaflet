@@ -48,7 +48,9 @@ function getInputPostList() {
 }
 
 function generateOutputPostFromTemplate(meta, content) {
-    const escapedContent = content.replace(/\`/g, `\\\``).replace(/\\/g, `\\\\`)
+    const escapedContent = content.replace(/\`/g, `\\\``)
+                                  .replace(/\\/g, `\\\\`)
+                                  .replace(/\$/g, `\\\$`)
 
     return postTemplate.replace(/#@#@post-summary/, meta.summary)
                        .replace(/#@#@post-title/, meta.title)

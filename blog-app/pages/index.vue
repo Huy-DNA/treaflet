@@ -10,7 +10,9 @@
             </h2>
             <p class='grey'>Read some freshly-baked posts</p>
         </div>
-        <PostGrid :post-metas='postMetasOnPage'/>
+        <div class="post-grid">
+            <PostGrid :post-metas='postMetasOnPage'/>
+        </div>
     </div>
 </template>
 
@@ -39,12 +41,15 @@
     .headline {
         background-color: $black;
 
+        margin-left: 0px;
+        margin-right: 0px;
         margin-top: 0px;
         margin-bottom: 40px;
 
         padding-top: 10px;
         padding-bottom: 10px;
-        
+        padding-left: 5vw;
+
         line-height: 0.5;
         position: sticky;
         top: 0px;
@@ -73,5 +78,10 @@
 
     .pagination button[active]:hover {
         background-color: $silver;
+    }
+
+    .post-grid {
+        padding-left: 5vw;
+        padding-right: 5vw;
     }
 </style>

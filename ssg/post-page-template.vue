@@ -9,7 +9,7 @@
                     type: "text/javascript",
                     innerHTML: `MathJax = {
                                     tex: {
-                                        inlineMath: [['$', '$'], ['\\(', '\\)']]
+                                        inlineMath: [['$', '$']],
                                     }
                                 };`
                 },
