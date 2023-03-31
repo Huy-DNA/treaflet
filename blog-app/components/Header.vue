@@ -32,7 +32,7 @@
         cursor: pointer;
         margin-top: 80px;
         font-family: 'Lato', sans-serif;
-        font-size: 50px;
+        font-size: min(12vw, 50px);
         justify-content: center;
         display: flex;
     }
