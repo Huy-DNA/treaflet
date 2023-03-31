@@ -1,7 +1,7 @@
 <template>
     <header>
         <GithubCorner github-link='https://github.com/HuyDNA/BloggingInHell'/>
-        <h1>
+        <h1 @click='handleHeaderClick'>
             <span class='blue'>Blogging...</span>
             <span>In</span>
             <i class='pink-red'>He</i>
@@ -9,6 +9,10 @@
         </h1>
     </header>
 </template>
+
+<script setup lang='ts'>
+    const handleHeaderClick = () => useRouter().push('/');
+</script>
 
 <style lang='scss' scoped>
     .blue {
@@ -25,6 +29,7 @@
     }
 
     h1 {
+        cursor: pointer;
         margin-top: 80px;
         font-family: 'Lato', sans-serif;
         font-size: 50px;
