@@ -1,9 +1,7 @@
 <template>
-    <ClientOnly>
-        <button @click.prevent='handleTopButtonClick'>
-            <i class="fa-solid fa-arrow-up"> </i> 
-        </button>
-    </ClientOnly>
+    <button @click.prevent='handleTopButtonClick'>
+        <i class="fa-solid fa-arrow-up"> </i> 
+    </button>
 </template>
 
 <script setup lang='ts'>
