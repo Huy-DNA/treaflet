@@ -16,7 +16,7 @@
     const shouldShowTopButton = ref<boolean>(false);
 
     const handleScroll = () => {
-        if (window.scrollY > 100)
+        if (window.scrollY > 0)
             shouldShowTopButton.value = true;
         else
             shouldShowTopButton.value = false;
