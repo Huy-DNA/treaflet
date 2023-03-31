@@ -1,6 +1,6 @@
 <template>
     <header>
-        <GithubCorner github-link='https://github.com/HuyDNA/'/>
+        <GithubCorner github-link='https://github.com/HuyDNA/BloggingInHell'/>
         <h1>
             <span class='blue'>Blogging...</span>
             <span>In</span>
