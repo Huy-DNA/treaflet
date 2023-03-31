@@ -1,7 +1,7 @@
 <template>
     <div>
         <p class='post-title'><NuxtLink :to="`${getPostPageLink(postMeta)}`">{{ postMeta.title }}</NuxtLink></p>
-        <p class='post-summary'><i>{{ postMeta.summary }}</i></p>
+        <p class='post-summary'>{{ postMeta.summary }}</p>
     </div>
 </template>
 
@@ -16,10 +16,15 @@
         color: $purple;
     }
 
+    p.post-title {
+        margin-bottom: 5px;
+    }
+
     p.post-summary {
         margin-left: 20px;
         margin-top: 0px;
         padding-top: 0px;
-        line-height: 0;
+        line-height: 1.5;
+        font-style: italic;
     }
 </style>

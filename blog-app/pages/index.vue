@@ -61,7 +61,7 @@
         padding-bottom: 10px;
         padding-left: 5vw;
 
-        line-height: 0.5;
+        line-height: 1.5;
         position: sticky;
         top: 0px;
     }

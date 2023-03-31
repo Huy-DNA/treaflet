@@ -59,7 +59,12 @@
     .date-block {
         display: grid;
         grid-template-columns: 110px 10px 1fr;
-        row-gap: 0;
-        line-height: 0;
+        row-gap: 0%;
+        line-height: 1.15;
+    }
+
+    .date-block p {
+        margin-bottom: 5px;
+        padding-bottom: 5px;
     }
 </style>
