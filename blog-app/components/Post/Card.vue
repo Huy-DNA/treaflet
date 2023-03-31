@@ -2,7 +2,7 @@
     <div class='card' @click='handleCardClick'>
         <div class='thumbnail' :style='cssVars'/>
         <h3 class='title'>{{ postMeta.title }}</h3>
-        <p class='post-time'> Posted on: {{ extractDate(postMeta.createdAt) }}</p>
+        <p class='post-time'> Posted on: {{ postMeta.createdAt }}</p>
         <p class='summary'>{{ postMeta.summary }}</p>
     </div>
 </template>
@@ -42,8 +42,6 @@
         display: flex;
         flex-direction: column;
         align-items: stretch;
-        overflow: hidden;
-        text-overflow: ellipsis;
         
         height: 600px;
     }
@@ -76,7 +74,6 @@
     p.summary {
         margin: 5px 15px;
         color: $white;
-        line-height: 1.5;
     }
 
 
