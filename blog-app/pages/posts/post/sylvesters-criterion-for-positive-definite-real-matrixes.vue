@@ -25,9 +25,7 @@
     const title = "Sylvester's criterion for positive-definite real matrixes"
     const createdAt = "20/07/2022"
     const modifiedAt = "29/03/2022"
-    const content = `<div style="text-align: justify">
-
-<h2 id="-introduction-"><span style="color:#339CFF"> Introduction </span></h2>
+    const content = `<h2 id="introduction">Introduction</h2>
 <p>Sometimes, I still have flashbacks of the time we had to learn Linear Algebra and Calculus at university. They were not necessarily hard but they really did give me kind of a struggle. The problem I had was the way they were taught, kinda like "Here we apply this.... and boom! Problem solved" with no further explanations as to why it worked. It just worked! This made me SUPER frustrated as I have always needed to know how something works before actually make it work.</p>
 <p>As for Linear Algebra, this was a whole new area for me. At first, topics like Gaussian elimination, determinant, vector space or orthogonal matrix did not really give me a hard time. I did stumble here and there but overall I could prove most relevant mathematical results easily. However, the last few topics such as eigenvalues and quadratic forms were incredibly hard. The mathematical results were kinda unintuitive. At some time, I gave up and just learned the results by heart and how to apply it anyways. I did look up some of the proofs but apparently, this did not satisfy me.</p>
 <p>For now is the summertime, I've decided to revisit some of the results to try to prove them. This is the first of them! And it's inspired by one proof I came across to a different theorem a long time ago. If my memory serves me right, I think that theorem was:</p>
@@ -36,26 +34,24 @@
 </blockquote>
 <p>The theorem I'm about to prove has to do with quadratic form of symmetric matrices. Let's dive in!!!</p>
 <p><em>Final remark. (editted at 29/03/2022)</em> Looking back at this reminds me of the old glorious time where I got a good hold of Math. I don't know, if I'm to review all the Math knowledge now, I may still be as good. It's just that, there are a lot of things going on right now and I can't just indulge myself in this anymore. Well, this will always be a reminder that I used to live a much simpler life than the one I'm living through now.</p>
-<h2 id="-notations-"><span style="color:#339CFF"> Notations </span></h2>
+<h2 id="notations">Notations</h2>
 <ul>
 <li>\$M_n\$ The set of all square matrices of size \$n \\times n\$.</li>
 <li>\$\\Delta_i\$ The upper left \$i\$-by-\$i\$ corner of a given matrix \$\\boldsymbol{A}\$.</li>
 </ul>
-<h2 id="-prerequisite-knowledge-"><span style="color:#339CFF"> Prerequisite knowledge </span></h2>
+<h2 id="prerequisite-knowledge">Prerequisite knowledge</h2>
 <p><em>Definition 1.</em> Given a symmetric matrix \$\\boldsymbol{A} \\in M_n\$. The quadratic form of \$\\boldsymbol{A}\$ is \$Q(\\boldsymbol{x}) = \\boldsymbol{x}^T\\boldsymbol{A}\\boldsymbol{x}\$, with \$\\boldsymbol{x} \\in \\mathbb{R}^n\$.</p>
 <p><em>Definition 2.</em> Given a symmetric matrix \$\\boldsymbol{A} \\in M_n\$, then \$\\boldsymbol{A}\$ is said to be positive-definite if and only if its quadratic form \$Q(\\boldsymbol{x}) &gt; 0\$ for all non-zero \$\\boldsymbol{x} \\in \\mathbb{R}^n\$.</p>
 <p>As we can see, the quadratic form of a symmetric matrix \$\\boldsymbol{A}\$ is actually \$Q(\\boldsymbol{x}) = P(x_1, x_2, \\cdots, x_n) = \\displaystyle \\sum_{1 \\le i &lt; j \\le n} 2a_{ij}\\times x_ix_j = \\displaystyle \\sum_{i = 1}^n a_{ii}\\times x_i^2\$. Therefore, a symmetric matrix is positive-definite if and only if \$P(x_1, x_2, \\cdots, x_n)\$ for all real number \$x_1, x_2, \\cdots, x_n\$.</p>
 <p><em>Theorem 1.</em> Given a matrix \$\\boldsymbol{A} \\in M_n\$. Then \$\\boldsymbol{A}\$ is orthogonally diagnonalizable if and only if \$\\boldsymbol{A}\$ is symmetric.</p>
 <p><em>Theorem 2.</em> A symmetric matrix \$\\boldsymbol{A} \\in M_n\$ if positive-definite if and only if all of its eigenvalues are positive.</p>
 <p>It can be easily seen that <em>Theorem 1.</em> is actually a stronger result than the one I mentioned earlier. I will use these two theorems in my proof.</p>
-<h2 id="-sylvesters-criterion"><span style="color:#339CFF"> Sylvester's criterion</span></h2>
-
-
+<h2 id="sylvesters-criterion">Sylvester's criterion</h2>
 <p>Sylvester's criterion
  gives a necessary and sufficient criterion
  for a symmetric \$\\boldsymbol{A}\$ to be positive-definite.</p>
 <p><em>Sylvester's criterion.</em> Given a symmetric \$\\boldsymbol{A} \\in M_n\$. Then \$\\boldsymbol{A}\$ is positive-definite if and only if \$|\\Delta_i| &gt; 0\$ for all \$i = \\overline{1, n}\$.</p>
-<h2 id="-proof"><span style="color:#339CFF"> Proof</span></h2>
+<h2 id="proof">Proof</h2>
 <ul>
 <li>Sylvester's criterion is sufficient for a symmetric matrix \$\\boldsymbol{A}\$ to be positive-definite (i).</li>
 </ul>
@@ -96,5 +92,5 @@
 <p>This is actually simple, from <em>Theorem 1.</em>, we know that \$\\boldsymbol{A}\$ is always orthogonally diagonalizable. Therefore, there's some \$\\boldsymbol{P}\$ such that \$\\boldsymbol{A} = \\boldsymbol{P}^{-1}\\boldsymbol{D}\\boldsymbol{P} = \\boldsymbol{P}^{T}\\boldsymbol{D}\\boldsymbol{P}\$. Consequently, \$|\\boldsymbol{A}| = |\\boldsymbol{D}|\$.</p>
 <p>Moreover, because \$\\boldsymbol{A}\$ is positive-definite, \$\\boldsymbol{D}\$ can be easily proved to be positive-definite (Hint: use the above result \$\\boldsymbol{A}= \\boldsymbol{P}^{T}\\boldsymbol{D}\\boldsymbol{P}\$).</p>
 <p>We can conclude that \$|D| &gt; 0\$, so \$|A| &gt; 0\$. We're now done with the induction step and it follows that (ii) must be true for all size of \$\\boldsymbol{A}\$.</p>
-</div>`
+`
 </script>
