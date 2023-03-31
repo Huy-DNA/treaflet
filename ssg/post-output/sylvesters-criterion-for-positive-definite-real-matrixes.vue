@@ -18,7 +18,8 @@
                     async: true, 
                     src:"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js",
                 },
-            ]
+            ],
+        title: "Sylvester's criterion for positive-definite real matrixes",
     })
     const summary = "An elementary proof to Sylvester's criterion. Some rantings bonus."
     const title = "Sylvester's criterion for positive-definite real matrixes"

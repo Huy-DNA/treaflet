@@ -53,7 +53,7 @@ function generateOutputPostFromTemplate(meta, content) {
                                   .replace(/\$/g, `\\\$`)
 
     return postTemplate.replace(/#@#@post-summary/, meta.summary)
-                       .replace(/#@#@post-title/, meta.title)
+                       .replace(/#@#@post-title/g, meta.title)
                        .replace(/#@#@post-created-at/, meta.createdAt)
                        .replace(/#@#@post-modified-at/, meta.modifiedAt)
                        .replace(/#@#@post-content/, () => escapedContent)
