@@ -1,5 +1,10 @@
 <template>
     <div>
+        <Breadcrumb>
+            <ul>
+                <li><NuxtLink to='#'>Home</NuxtLink></li>
+            </ul>
+        </Breadcrumb>
         <p class='post-prompt'><i>See <NuxtLink to='/posts'>a list of all posts</NuxtLink> here!</i></p>
         <div class='headline'>
             <h2>

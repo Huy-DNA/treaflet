@@ -4,9 +4,7 @@
         <h3 class='title'>{{ postMeta.title }}</h3>
         <p class='post-time'> Posted on: {{ postMeta.createdAt }}</p>
         <p class='summary'>{{ postMeta.summary }}</p>
-        <div class='tagbar'> 
-            <Pill v-for='tag in postMeta.tag'>{{ tag }}</Pill>
-        </div>
+        <TagBar :tags='postMeta.tag'/>
     </div>
 </template>
 
@@ -78,14 +76,7 @@
         margin: 5px 15px;
         color: $white;
     }
-    
-    div.tagbar {
-        margin: 15px 15px 15px 15px;
-        display: flex;
-        flex-flow: row nowrap;
-        overflow: hidden;
-        gap: 5px;
-    }
+
     div.card {
         width: 85vw;
     }
