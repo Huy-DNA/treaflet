@@ -1,5 +1,6 @@
 <template>
     <div>
+        <p class='post-prompt'><i>See <NuxtLink to='/posts'>a list of all posts</NuxtLink> here!</i></p>
         <div class='headline'>
             <h2>
                 Latest Posts
@@ -34,6 +35,11 @@
 </script>
 
 <style lang='scss' scoped>
+    .post-prompt {
+        padding-left: 5vw;
+        margin-bottom: 0;
+    }
+
     .grey {
         color: $grey;
     }
