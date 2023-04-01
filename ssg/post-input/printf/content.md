@@ -194,7 +194,7 @@ Notice that there is some abstraction here -- the `va_list`, `v_start`, `va_arg`
 #### The non-variadic version
 
 I want to prove in this section that the schema in the above diagram can really work. Therefore, I want to:
-* Build an additional preprocessor that process the client source code before calling the GNU compiler.
+* Build an additional preprocessor that process the client source code before calling the `g++` compiler.
 * Write a non-variadic `printf` function and compiled it.
 * Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
 
