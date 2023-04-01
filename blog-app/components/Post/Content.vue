@@ -49,6 +49,10 @@
         color: $blue;
     }
 
+    :deep(ul li) {
+        list-style-type: disc;
+    }
+
     :deep(.pink-red) {
         color: $pink-red;
     }
@@ -61,6 +65,11 @@
     :deep(h2) {
         color: $green;
     }
+
+    :deep(h3) {
+        color: $green;
+    }
+
     .post-header h2 {
         color: $green;
         font-size: 3em;

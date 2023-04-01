@@ -8,6 +8,6 @@ export default function getPostsMetas(
 
     if (sort)
         postMetas.sort(comparefn)
-
+        
     return postMetas
 }

@@ -89,7 +89,7 @@
 
     @media(min-width: 600px) {
         div.card {
-            max-width: 350px;
+            max-width: 380px;
         }
     }
 
