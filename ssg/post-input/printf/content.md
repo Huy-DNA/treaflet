@@ -1,16 +1,12 @@
 
 ## Introduction
-Yesterday (31/03/2023), my professor asked my class a simple question: "How can `printf` accept a variable number of parameters?". Well, the first thing that came to my mind was a concept called _variadic function_ in C. But even then, how does variadic and the magical ellipsis (`...`) really work??? Till that point, I had not really thought much about those three magical dots and it was pretty much a black box to me.
+Yesterday (31/03/2023), my professor asked my class a simple question: "How can `printf` accept a variable number of parameters?". Well, the first thing that came to my mind was a concept called _variadic function_ in C. But even then, how does variadic and the magical ellipsis (`...`) really work? Till that point, I had not really thought much about those three magical dots and it was pretty much a black box to me.
 
-As far as I know, in assembly languages, passing a variable number of parameters is totally normal -- you save the parameters in memory, pass a pointer and something to mark those parameters (because in assembly, there are no concept of _type_, just byte and byte) to the function, that's all. I couldn't totally resolve the problem in my head before the class ended and it haunted me all throughout the bus ride to my brother's house (to the point that my bus almost ran past my bus stop). Luckily, I was able to break the magic & come up with a way to do this.
+As far as I know, in assembly languages, passing a variable number of parameters is totally normal -- you save the parameters in memory, pass to the function a pointer and something to mark those parameters (because in assembly, there are no concept of _type_, just byte and byte). I couldn't totally resolve the problem in my head before the class ended. It haunted me all throughout the bus ride to my brother's house, to the point that my bus almost ran past my bus stop. Fortunately, I was able to break the magic and come up with a way to do this.
 
-This maybe the first post in the series about `printf` or variadic functions? -- I have not really decided yet! At the time I write this post, I still haven't looked into how variadic functions & `printf` really work in C/C++, so this is just my speculation! (Hence the name of the post)
+At the time I write this post, I still haven't looked into how variadic functions & `printf` really work in C/C++, so this is just my speculation! (Hence the name of the post)
 
-It's often (or sadly, used to be) my habit to guess how something works before looking them up.
-
-I want to iterate that: **This is wholy my speculation, to show that's there's no magic in this, not to explain how the real `printf` works**.
-## Languages in this post
-I use C++ to write both a variadic and a non-variadic version.
+I want to strongly emphasize that: **This is wholy my speculation, to show that's there's no magic in this, not to explain how the real `printf` works**.
 
 ## Goals
 
@@ -18,36 +14,14 @@ I use C++ to write both a variadic and a non-variadic version.
 
 * The implementation must be able to accept a variable number of parameters _at runtime_.
 
-  What do I mean by this? In C++, there are some powerful compile-time features such as template & parameter pack which strongly resemble variadic functions.  **However**, implementations using those features do not accept a variable number of parameters _at runtime_, they just create that illusion. It's outside of the scope of this post to fully explain this, but the take-away note is that when you compile those implementations, the compiled code can only accept a finite number of parameters!
+  What do I mean by this? 
+  
+  In C++, there are some powerful compile-time features such as template & parameter pack which strongly resemble variadic functions.  **However**, implementations using those features do not accept a variable number of parameters _at runtime_, they just create that illusion. It's outside of the scope of this post to fully explain this, but the take-away note is that when you compile those implementations, the compiled code can only accept a finite number of parameters!
 
 ## A short-and-sweet knowledge refresher
 
-### MIPS assembly
-Kindly note that MIPS is in the big-endian camp.
-
-We'll make heavy use of these following three MIPS basic (or basic type of) instructions:
-
-* Load instructions:
-```MIPS
-lw rt, im(rs)   # rt is assigned the word starting from rs + im
-lh rt, im(rs)   # rt is assigned the half word starting from rs + im
-lb rt, im(rs)   # rt is assigned the byte at rs + im
-```
-
-* Store instructions:
-```MIPS
-sw rt, im(rs)   # rt is stored as a word at the address starting from rs + im
-sh rt, im(rs)   # rt is stored as a half word (the lower half) at the address starting from rs + im
-sb rt, im(rs)   # rt's lowest byte is stored at rs + im
-```
-
-* Jump and link instruction: `jal address`
-
-Jump to an address whose the highest 4 bits are taken from the `PC` and the lowest 28 bits are the `address` value shifted left by 2 bit (this is also known as pseudo-indirect addressing).
-
-One thing to note about load & store instructions is that `im + rs` must be aligned, i.e, a word address must start at an address that is divisible by the word size and a byte's address can be anywhere. Another final note is that these load & store instructions each have an unsigned equivalence.
-
 ### Function call
+
 What really happens behind a function call like this?
 
 ```C++
@@ -90,16 +64,17 @@ jal <f_address>
 
 That's all! But are we missing something here?
 
-Well, because these two choices of parameter passing differ in the parameters passed to the function, the function itself needs to know that what scheme is used in order to interpret the parameters correctly. Thus, the parameter-receiving code of the first `f` and the second `f` should be different. Whether to use the former or the latter is established by the coder (of MIPS) or the compiler (in high-level languages) as part of what is called the [Calling convention](https://en.wikipedia.org/wiki/Calling_convention).
+Because these two choices of parameter passing differ in the parameters passed to the function, the function itself needs to know that what scheme is used in order to interpret the parameters correctly. Thus, the parameter-interpreting code of the first `f` and the second `f` should be different. Whether to use the former or the latter is established by the coder (of MIPS) or the compiler (in high-level languages) as part of what is called the [Calling convention](https://en.wikipedia.org/wiki/Calling_convention).
 
 So, we are done with passing parameters right? Well, no! There still remains two problems:
 
-* In higher-level languages, there are concepts of data types. Data types can be of various words (or bytes) in size. The latter scheme shown above only works because we treat each parameter as a word, therefore, only the address of the buffer and the number of parameters suffice to locate all the parameters. However, functions like `printf` accept variable parameters of **variable types**, those information alone is not sufficient.
-* We know how to pass variable parameters in MIPS, but how can we do it in C/C++? The answer is the ellipsis `...`, but I want to get deeper than this.
+* In higher-level languages, there is the concept of data types. Data types can be of various words (or bytes) in size. The latter scheme only works because we treat each parameter as a word. Therefore, only the address of the buffer and the number of parameters suffice to locate all the parameters. However, functions like `printf` accept a varying number parameters of **data types**. Hence the length information alone is not sufficient.
+* We know how to pass variable parameters in MIPS, but how can we do it in C/C++? The answer is the ellipsis `...`. However, this is still too high an abstraction barrier. We'll explore further down this barrier.
 
 ## Let's get dirty!
 
 ### printf API
+
 Here's the API for `printf` specified in [cplusplus](https://cplusplus.com/reference/cstdio/printf/):
 
 ```C++
@@ -133,7 +108,7 @@ Have you come up with a plan? It turns out to be pretty simple. Just look at the
 
 It's funny how we don't even need to pass a length parameter, just the buffer address is enough!
 
-### Let's implement -- From a high-level view
+### My implementation from a high-level view
 
 Let's make the above idea a little more concrete.
 
