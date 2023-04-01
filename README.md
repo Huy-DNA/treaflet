@@ -16,6 +16,7 @@ Deployed at: https://blogginginhell.netlify.app/
     * Always specify the format of date string for parsing. **(Costs me a day)**
     * Use npmjs to search for a library before installing. **(Costs me an hour)**
     * Never forget to pass `key` when using v-for.
+    * Avoid using top-level scripts as much as possible.
 ## To do list
 
 * ~~The blog sort by date function currently doesn't work correctly on FireFox, causing hydration mismatch and the index page isn't working correctly -- while Chrome works fine.~~ The datetime parsing was causing problems - Because luxon expects the date string to be in another format, it returns `NaN` and unexpected behaviors ensue! It takes me one day OMG!
