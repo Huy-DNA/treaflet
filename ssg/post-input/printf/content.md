@@ -96,17 +96,17 @@ Of course, with this, some additional statements have to be prepended to write t
 
 The only issue we have to address now is how to locate the parameters in the buffer.
 
-As stated, because of the concept of "data type", this isn't immediately solved by passing a length parameter. The buffer passed to the function is no more than a raw array of bytes! We need information about the type of each parameter _at runtime_.
-
-How can!? Many higher-level language does comprehensively support runtime type information (with more overhead than C obviously). With C++, this is limited. With C (which I don't know much of), as far as I know, doesn't natively support runtime type information. So I'll let you think a little bit.
+As stated, because of the concept of "data type", this isn't immediately solved by passing a length parameter. The buffer passed to the function is no more than a raw array of bytes! We need information about the type of each parameter _at runtime_. Many higher-level language does comprehensively support runtime type information, with a whole lot more overhead. With C++, this is limited. So I'll let you think a little bit.
 
 ...
 
 ...
 
-Have you come up with a plan? It turns out to be pretty simple. Just look at the first parameter -- the `format` string. It already encodes type information for us, namely `%s`, `%d`, `%p`... Each type information comes with its size-in-byte information. These are sufficient to locate the parameters in the buffer in an almost straightforward way (just don't forget about **data alignment** though).
+...
 
-It's funny how we don't even need to pass a length parameter, just the buffer address is enough!
+Have you come up with a plan? It turns out to be pretty simple. Just look at the first parameter -- the `format` string. It already encodes the type information for us, namely `%s`, `%d`, `%p`... Each type information comes with its size-in-byte information. These are sufficient to locate the parameters in the buffer in an almost straightforward way. However, be aware of the problem of **data alignment**.
+
+It's funny how we don't even need to pass a length parameter, just the buffer address is enough.
 
 ### My implementation from a high-level view
 
@@ -132,7 +132,7 @@ For simplicity, I only support 4 format specifiers, that is:
 
 #### The highly abstract variadic version
 
-The variadic-version of C++ code is as follows. Notice that there is some abstraction here -- the `va_list`, `v_start`, `va_arg` and `va_end` macros (however, safely implementing this is still a tedious task).
+The variadic-version of C++ code is as follows.
 
 ```C++
 #include <cstdlib>
@@ -189,10 +189,12 @@ void variadic_printf(const char* format, ...) {
 }
 ```
 
+Notice that there is some abstraction here -- the `va_list`, `v_start`, `va_arg` and `va_end` macros (however, safely implementing this is still a tedious task).
+
 #### The non-variadic version
 
 I want to prove in this section that the schema in the above diagram can really work. Therefore, I want to:
-* Build an additional preprocessor that process the client source code before calling the gnu compiler.
+* Build an additional preprocessor that process the client source code before calling the GNU compiler.
 * Write a non-variadic `printf` function and compiled it.
 * Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
 
