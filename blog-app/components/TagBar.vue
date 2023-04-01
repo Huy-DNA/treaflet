@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Pill v-for='tag in tags'>{{ tag }}</Pill>
+        <Pill v-for='tag in tags' :key='tag'>{{ tag }}</Pill>
     </div>
 </template>
 
