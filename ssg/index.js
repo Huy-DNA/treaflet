@@ -48,7 +48,8 @@ function getInputPostList() {
 }
 
 function generateOutputPostFromTemplate(meta, content) {
-    const escapedContent = content.replace(/\`/g, `\\\``)
+    const escapedContent = content.replace(/<code class="language-(.*)">/g, `<label>$1</label>$&`)
+                                  .replace(/\`/g, `\\\``)
                                   .replace(/\\/g, `\\\\`)
                                   .replace(/\$/g, `\\\$`)
 

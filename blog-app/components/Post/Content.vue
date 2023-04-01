@@ -23,6 +23,28 @@
 </script>
 
 <style lang="scss" scoped>
+    :deep(code) {
+        color: $pink-red;
+        padding: 5px;
+    }
+
+    :deep(pre) {
+        width: max(60vw, 280px);
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 0px;
+    }
+
+    :deep(pre > label) {
+        display: block;
+        background-color: $light-black;
+        padding-left: 10px;
+    }
+
+    :deep(pre > code) {
+        color: $white;
+    }
+
     :deep(.blue) {
         color: $blue;
     }
