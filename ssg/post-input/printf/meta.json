@@ -1,0 +1,12 @@
+{
+    "id": "1",
+    "title": "printf - A speculative implementation",
+    "summary": "This post mainly concerns itself with the problem of functions accepting a variable number of parameters. There's a catch though!",
+    "createdAt": "01/04/2023",
+    "modifiedAt": "01/04/2023",
+    "thumbnailUrl": "/post-thumbnails/cpp.png", 
+    "tag": [
+        "c++",
+        "mips"
+    ]
+}

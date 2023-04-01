@@ -4,6 +4,12 @@
 
 <script setup lang='ts'>
     useHead({
+        link: [
+            {
+                rel: 'stylesheet',
+                href: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/rainbow.min.css",
+            },
+        ],
         script: [
                 {
                     type: "text/javascript",
@@ -17,6 +23,16 @@
                     hid: "MathJax-script", 
                     async: true, 
                     src:"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js",
+                },
+                {
+                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
+                },
+                {
+                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/mipsasm.min.js",
+                },
+                {
+                    type: 'text/javascript',
+                    innerHTML: "hljs.highlightAll()",
                 },
             ],
         title: "Sylvester's criterion for positive-definite real matrixes",
