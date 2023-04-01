@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang='ts'>
+    import hljs from 'highlight.js'
+
     useHead({
         link: [
             {
@@ -23,16 +25,6 @@
                     hid: "MathJax-script", 
                     async: true, 
                     src:"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js",
-                },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
-                },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/mipsasm.min.js",
-                },
-                {
-                    type: 'text/javascript',
-                    innerHTML: "hljs.highlightAll()",
                 },
             ],
         title: "printf - A speculative implementation",
@@ -141,4 +133,7 @@ jal &lt;f_address&gt;
 <h3 id="lets-implement----from-a-high-level-view">Let's implement -- From a high-level view</h3>
 <h3 id="its-real-code-now-elipsis">It's real code now **<em>elipsis</em>**</h3>
 `
+
+    onMounted(() => document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el as HTMLElement)))
+
 </script>

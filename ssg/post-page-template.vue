@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang='ts'>
+    import hljs from 'highlight.js'
+
     useHead({
         link: [
             {
@@ -24,16 +26,6 @@
                     async: true, 
                     src:"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js",
                 },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
-                },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/mipsasm.min.js",
-                },
-                {
-                    type: 'text/javascript',
-                    innerHTML: "hljs.highlightAll()",
-                },
             ],
         title: "#@#@post-title",
     })
@@ -42,4 +34,7 @@
     const createdAt = "#@#@post-created-at"
     const modifiedAt = "#@#@post-modified-at"
     const content = `#@#@post-content`
+
+    onMounted(() => document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el as HTMLElement)))
+
 </script>

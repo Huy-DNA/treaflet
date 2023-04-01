@@ -3,6 +3,8 @@
 </template>
 
 <script setup lang='ts'>
+    import hljs from 'highlight.js'
+
     useHead({
         link: [
             {
@@ -23,16 +25,6 @@
                     hid: "MathJax-script", 
                     async: true, 
                     src:"https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js",
-                },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js",
-                },
-                {
-                    src: "//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/mipsasm.min.js",
-                },
-                {
-                    type: 'text/javascript',
-                    innerHTML: "hljs.highlightAll()",
                 },
             ],
         title: "Sylvester's criterion for positive-definite real matrixes",
@@ -109,4 +101,7 @@
 <p>Moreover, because \$\\boldsymbol{A}\$ is positive-definite, \$\\boldsymbol{D}\$ can be easily proved to be positive-definite (Hint: use the above result \$\\boldsymbol{A}= \\boldsymbol{P}^{T}\\boldsymbol{D}\\boldsymbol{P}\$).</p>
 <p>We can conclude that \$|D| &gt; 0\$, so \$|A| &gt; 0\$. We're now done with the induction step and it follows that (ii) must be true for all size of \$\\boldsymbol{A}\$.</p>
 `
+
+    onMounted(() => document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el as HTMLElement)))
+
 </script>
