@@ -8,12 +8,13 @@ This maybe the first post in the series about `printf` or variadic functions? --
 
 It's often (or sadly, used to be) my habit to guess how something works before looking them up.
 
+I want to iterate that: **This is wholy my speculation, to show that's there's no magic in this, not to explain how the real `printf` works**.
 ## Languages in this post
-I use C to write both a variadic and a non-variadic version. MIPS is also used to better illustrate the underlying working here.
+I use C++ to write both a variadic and a non-variadic version.
 
 ## Goals
 
-* Devise a way to pass and process a variable number of parameters to `printf`. It isn't in this post's scope to be concerned with the underlying IO operation, so I'll just be using the `write` system call API. I could have used `printf`, but that is hypothetical!
+* Devise a way to pass and process a variable number of parameters to `printf`. It isn't in this post's scope to be concerned with the underlying IO operation.
 
 * The implementation must be able to accept a variable number of parameters _at runtime_.
 
@@ -110,11 +111,11 @@ int printf(const char* format, ...);
 * `printf` returns an `int` but we may not worry about it here.
 
 ### Now how do we pass the parameters!?
-Well, let's first talk from C's perspective: How does C process this statement?
+Well, let's first talk from C++'s perspective: How does C++ process this statement?
 
 My initial-and-only guess is that it involves some compiler magic (maybe macro or something more than that). Precisely, some transformation happens:
 
-![C compiler magic](/printf/c-compiler.svg)
+![C compiler magic](/printf/c++-compiler.svg)
 
 Of course, with this, some additional statements have to be prepended to write the parameters to a predefined buffer. Nevertheless, this is perfectly fine.
 
@@ -134,5 +135,92 @@ It's funny how we don't even need to pass a length parameter, just the buffer ad
 
 ### Let's implement -- From a high-level view
 
+Let's make the above idea a little more concrete.
+
+![high level implementation of the above idea](/printf/high-level-imp.svg)
+
+* The yellow box refers to the client (user) _source code_.
+* The blue box refers to the compiled code (`printf` is distributed in compiled binary).
+
+The above diagram shows what could happen behind the scene when the client code call `printf`. The compiler can inspect the client code and alter it accordingly before passing on to `printf`. 
+
+Notice that the compiler can't do anything inside `printf` as it's already compiled. In other word, this scheme is feasible even when `printf` is compiled and the compiler can not see its source code. This contrasts with parameter pack & template where the compiler needs to (kind of) duplicate a function's source code.
 
 ### It's real code now \*\*_elipsis_\*\*
+
+For simplicity, I only support 4 format specifiers, that is:
+
+* `%d`: an `int` goes into this.
+* `%s`: a `const char*` goes into this.
+* `%f`: a `double` goes into this (`float` is automatically promoted to `double` when passed through variadic). In non-variadic version, we have to handle this ourselves.
+* `%p`: a `const void*` pointer goes into this. The pointer is printed out in decimal.
+
+#### The highly abstract variadic version
+
+The variadic-version of C++ code is as follows. Notice that there is some abstraction here -- the `va_list`, `v_start`, `va_arg` and `va_end` macros (however, safely implementing this is still a tedious task).
+
+```C++
+#include <cstdlib>
+#include <string>
+#include <cstdarg>
+#include <cstring>
+#include <cstdio>
+
+void variadic_printf(const char* format, ...) {
+   va_list args;
+   va_start(args, format);
+
+   const char* format_pos = format;
+   int length = 0;
+   for (int i = 0; format[i] != '\0'; ++i) {
+       if (format[i] != '%')
+           length += 1;
+       else {
+           fwrite((const void*) format_pos, length, sizeof(char), stdout);
+           format_pos += length + 2;
+           length = 0;
+
+           ++i;
+           if (format[i] == '\0') {
+               fputs("Warning: trailing spurious trailing %", stderr);
+               putchar('%');
+               break;
+           }
+           else if (format[i] == 'd') {
+               int num = va_arg(args, int);
+               fputs(std::to_string(num).c_str(), stdout);
+           }
+           else if (format[i] == 'f') {
+               double num = va_arg(args, double);
+               fputs(std::to_string(num).c_str(), stdout); 
+           }
+           else if (format[i] == 's') {
+               const char* s = va_arg(args, char*);
+               fputs(s, stdout); 
+           }
+           else if (format[i] == 'p') {
+               long long p = (long long)va_arg(args, void*);
+               fputs(std::to_string(p).c_str(), stdout);
+           }
+           else {
+               fputs("Warning: Unknown format specifier, ignore", stderr);
+           }
+       }
+   }
+
+   fwrite(format_pos, length, sizeof(char), stdout);
+
+   va_end(args);
+}
+```
+
+#### The non-variadic version
+
+I want to prove in this section that the schema in the above diagram can really work. Therefore, I want to:
+* Build an additional preprocessor that process the client source code before calling the gnu compiler.
+* Write a non-variadic `printf` function and compiled it.
+* Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
+
+As the post is already long now, I'll leave this to another post.
+
+Farewell!

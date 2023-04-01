@@ -57,16 +57,20 @@
         color: $pink-red;
     }
 
+    :deep(img) {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
     .post-content {
         padding-left: 5vw;
         padding-right: 5vw;
     }
 
-    :deep(h2) {
-        color: $green;
-    }
-
-    :deep(h3) {
+    :deep(h2),
+    :deep(h3),
+    :deep(h4) {
         color: $green;
     }
 

@@ -38,11 +38,12 @@
 <p>As far as I know, in assembly languages, passing a variable number of parameters is totally normal -- you save the parameters in memory, pass a pointer and something to mark those parameters (because in assembly, there are no concept of <em>type</em>, just byte and byte) to the function, that's all. I couldn't totally resolve the problem in my head before the class ended and it haunted me all throughout the bus ride to my brother's house (to the point that my bus almost ran past my bus stop). Luckily, I was able to break the magic &amp; come up with a way to do this.</p>
 <p>This maybe the first post in the series about <code>printf</code> or variadic functions? -- I have not really decided yet! At the time I write this post, I still haven't looked into how variadic functions &amp; <code>printf</code> really work in C/C++, so this is just my speculation! (Hence the name of the post)</p>
 <p>It's often (or sadly, used to be) my habit to guess how something works before looking them up.</p>
+<p>I want to iterate that: <strong>This is wholy my speculation, to show that's there's no magic in this, not to explain how the real <code>printf</code> works</strong>.</p>
 <h2 id="languages-in-this-post">Languages in this post</h2>
-<p>I use C to write both a variadic and a non-variadic version. MIPS is also used to better illustrate the underlying working here.</p>
+<p>I use C++ to write both a variadic and a non-variadic version.</p>
 <h2 id="goals">Goals</h2>
 <ul>
-<li><p>Devise a way to pass and process a variable number of parameters to <code>printf</code>. It isn't in this post's scope to be concerned with the underlying IO operation, so I'll just be using the <code>write</code> system call API. I could have used <code>printf</code>, but that is hypothetical!</p>
+<li><p>Devise a way to pass and process a variable number of parameters to <code>printf</code>. It isn't in this post's scope to be concerned with the underlying IO operation.</p>
 </li>
 <li><p>The implementation must be able to accept a variable number of parameters <em>at runtime</em>.</p>
 <p>What do I mean by this? In C++, there are some powerful compile-time features such as template &amp; parameter pack which strongly resemble variadic functions.  <strong>However</strong>, implementations using those features do not accept a variable number of parameters <em>at runtime</em>, they just create that illusion. It's outside of the scope of this post to fully explain this, but the take-away note is that when you compile those implementations, the compiled code can only accept a finite number of parameters!</p>
@@ -119,9 +120,9 @@ jal &lt;f_address&gt;
 <li><code>printf</code> returns an <code>int</code> but we may not worry about it here.</li>
 </ul>
 <h3 id="now-how-do-we-pass-the-parameters">Now how do we pass the parameters!?</h3>
-<p>Well, let's first talk from C's perspective: How does C process this statement?</p>
+<p>Well, let's first talk from C++'s perspective: How does C++ process this statement?</p>
 <p>My initial-and-only guess is that it involves some compiler magic (maybe macro or something more than that). Precisely, some transformation happens:</p>
-<p><img alt="C compiler magic" src="/printf/c-compiler.svg"></p>
+<p><img alt="C compiler magic" src="/printf/c++-compiler.svg"></p>
 <p>Of course, with this, some additional statements have to be prepended to write the parameters to a predefined buffer. Nevertheless, this is perfectly fine.</p>
 <p>The only issue we have to address now is how to locate the parameters in the buffer.</p>
 <p>As stated, because of the concept of "data type", this isn't immediately solved by passing a length parameter. The buffer passed to the function is no more than a raw array of bytes! We need information about the type of each parameter <em>at runtime</em>.</p>
@@ -131,7 +132,86 @@ jal &lt;f_address&gt;
 <p>Have you come up with a plan? It turns out to be pretty simple. Just look at the first parameter -- the <code>format</code> string. It already encodes type information for us, namely <code>%s</code>, <code>%d</code>, <code>%p</code>... Each type information comes with its size-in-byte information. These are sufficient to locate the parameters in the buffer in an almost straightforward way (just don't forget about <strong>data alignment</strong> though).</p>
 <p>It's funny how we don't even need to pass a length parameter, just the buffer address is enough!</p>
 <h3 id="lets-implement----from-a-high-level-view">Let's implement -- From a high-level view</h3>
+<p>Let's make the above idea a little more concrete.</p>
+<p><img alt="high level implementation of the above idea" src="/printf/high-level-imp.svg"></p>
+<ul>
+<li>The yellow box refers to the client (user) <em>source code</em>.</li>
+<li>The blue box refers to the compiled code (<code>printf</code> is distributed in compiled binary).</li>
+</ul>
+<p>The above diagram shows what could happen behind the scene when the client code call <code>printf</code>. The compiler can inspect the client code and alter it accordingly before passing on to <code>printf</code>. </p>
+<p>Notice that the compiler can't do anything inside <code>printf</code> as it's already compiled. In other word, this scheme is feasible even when <code>printf</code> is compiled and the compiler can not see its source code. This contrasts with parameter pack &amp; template where the compiler needs to (kind of) duplicate a function's source code.</p>
 <h3 id="its-real-code-now-elipsis">It's real code now **<em>elipsis</em>**</h3>
+<p>For simplicity, I only support 4 format specifiers, that is:</p>
+<ul>
+<li><code>%d</code>: an <code>int</code> goes into this.</li>
+<li><code>%s</code>: a <code>const char*</code> goes into this.</li>
+<li><code>%f</code>: a <code>double</code> goes into this (<code>float</code> is automatically promoted to <code>double</code> when passed through variadic). In non-variadic version, we have to handle this ourselves.</li>
+<li><code>%p</code>: a <code>const void*</code> pointer goes into this. The pointer is printed out in decimal.</li>
+</ul>
+<h4 id="the-highly-abstract-variadic-version">The highly abstract variadic version</h4>
+<p>The variadic-version of C++ code is as follows. Notice that there is some abstraction here -- the <code>va_list</code>, <code>v_start</code>, <code>va_arg</code> and <code>va_end</code> macros (however, safely implementing this is still a tedious task).</p>
+<pre><label>C++</label><code class="language-C++">#include &lt;cstdlib&gt;
+#include &lt;string&gt;
+#include &lt;cstdarg&gt;
+#include &lt;cstring&gt;
+#include &lt;cstdio&gt;
+
+void variadic_printf(const char* format, ...) {
+   va_list args;
+   va_start(args, format);
+
+   const char* format_pos = format;
+   int length = 0;
+   for (int i = 0; format[i] != '\\0'; ++i) {
+       if (format[i] != '%')
+           length += 1;
+       else {
+           fwrite((const void*) format_pos, length, sizeof(char), stdout);
+           format_pos += length + 2;
+           length = 0;
+
+           ++i;
+           if (format[i] == '\\0') {
+               fputs("Warning: trailing spurious trailing %", stderr);
+               putchar('%');
+               break;
+           }
+           else if (format[i] == 'd') {
+               int num = va_arg(args, int);
+               fputs(std::to_string(num).c_str(), stdout);
+           }
+           else if (format[i] == 'f') {
+               double num = va_arg(args, double);
+               fputs(std::to_string(num).c_str(), stdout); 
+           }
+           else if (format[i] == 's') {
+               const char* s = va_arg(args, char*);
+               fputs(s, stdout); 
+           }
+           else if (format[i] == 'p') {
+               long long p = (long long)va_arg(args, void*);
+               fputs(std::to_string(p).c_str(), stdout);
+           }
+           else {
+               fputs("Warning: Unknown format specifier, ignore", stderr);
+           }
+       }
+   }
+
+   fwrite(format_pos, length, sizeof(char), stdout);
+
+   va_end(args);
+}
+</code></pre>
+<h4 id="the-non-variadic-version">The non-variadic version</h4>
+<p>I want to prove in this section that the schema in the above diagram can really work. Therefore, I want to:</p>
+<ul>
+<li>Build an additional preprocessor that process the client source code before calling the gnu compiler.</li>
+<li>Write a non-variadic <code>printf</code> function and compiled it.</li>
+<li>Write some example client code calling my <code>printf</code> implementation, hand it to my preprocessor before compiling. It should work and look identical to the real <code>printf</code> from the client code's point of view.</li>
+</ul>
+<p>As the post is already long now, I'll leave this to another post.</p>
+<p>Farewell!</p>
 `
 
     onMounted(() => document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el as HTMLElement)))
