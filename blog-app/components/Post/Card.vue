@@ -49,6 +49,7 @@
     div.card:hover { 
         background-color: $light-blue;
         border-color: $light-blue;
+        cursor: pointer;
     }
 
     div.thumbnail {
