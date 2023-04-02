@@ -74,6 +74,8 @@
     :deep(h3),
     :deep(h4) {
         color: $green;
+        overflow-wrap: break-word;
+        hyphens: auto;
     }
 
     .post-header h2 {

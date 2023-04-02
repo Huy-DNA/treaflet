@@ -3,6 +3,9 @@ export default defineNuxtConfig({
     ssr: true,
     app: {
         head: {
+            htmlAttrs: {
+                lang: 'en',
+            },
             title: 'BloggingInHell',
             meta: [
                 { 
