@@ -27,5 +27,7 @@
         -moz-transition: background-color 0.1s ease-out;
         -o-transition: background-color 0.1s ease-out;
         transition: background-color 0.1s ease-out;
+        
+        cursor: pointer;
     }
 </style>
