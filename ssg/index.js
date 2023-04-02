@@ -62,6 +62,7 @@ function generateOutputPostFromTemplate(meta, content) {
 
 function deployPosts() {
     File.copy(env.OUTPUT_META, env.DEPLOY_META)
-    Dir.delete(env.DEPLOY_POST)
-    Dir.copy(env.OUTPUT_POST, env.DEPLOY_POST)
+    
+    for (let output_post of Dir.read(env.OUTPUT_POST))
+        File.copy(`${env.OUTPUT_POST}/${output_post}`, `${env.DEPLOY_POST}/${output_post}`);
 }
