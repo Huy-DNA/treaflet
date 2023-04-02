@@ -26,7 +26,7 @@
     :deep(code) {
         color: $pink-red;
         padding: 5px;
-        font-size: 10px;
+        font-size: 16px;
     }
 
     :deep(pre) {
