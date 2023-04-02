@@ -29,7 +29,7 @@
     }
 
     :deep(pre) {
-        width: max(60vw, 280px);
+        width: max(80vw, 310px);
         margin-left: auto;
         margin-right: auto;
         border-radius: 0px;
@@ -61,6 +61,7 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+        max-width: 100%;
     }
 
     .post-content {
