@@ -170,13 +170,13 @@ The following pictures illustrate how the above program would run step-by-step (
 void* __internal_buffer = malloc(_BUFFER_SIZE);
 ```
 
-![Illustraion of Buffer Allocation](/printf/buffer-allocation.svg)
+![Illustration of Buffer Allocation](/printf/buffer-allocation.svg)
 
 * Initialize `p_last`:
 ```C++
 void* p_last = __internal_buffer;
 ```
-![Illustraion of p_last initialization](/printf/initialize-p_last.svg)
+![Illustration of p_last initialization](/printf/initialize-p_last.svg)
 
 * Write `const char*` to buffer
 
@@ -190,7 +190,7 @@ We reinterpret the `void *` `p_last` to `const char**`, which means we now see `
 
 We do not write the string directly but rather a pointer to it because the string can take up an arbitrary space on the buffer - the size information is not there! The pointer only occupy a fixed space and in this case it's taking 8 bytes. After this, `p_last` is moved to the right 8 bytes.
 
-![Illustraion of Write const char*](/printf/write-const-char-p.svg)
+![Illustration of Write const char*](/printf/write-const-char-p.svg)
 
 ```C++
 p_last = (char**)p_last + 1;
@@ -207,7 +207,7 @@ Similarly, we reinterpret `p_last` as an address to an `int` and write `86` to t
 p_last = (int*)p_last + 1; 
 ```
 
-![Illustraion of Write int](/printf/write-int.svg)
+![Illustration of Write int](/printf/write-int.svg)
 
 * Write a floating-point to buffer.
 
@@ -219,7 +219,7 @@ A `double` is 8-bytes, however, `p_last` now is divisible by `4` but not by `8`.
 // realign_double(p_last) does something like the following
 p_last = (char*)p_last + 4;
 ```
-![Illustraion of Realign double](/printf/align-double.svg)
+![Illustration of Realign double](/printf/align-double.svg)
 
 Then we proceed as normal:
 
@@ -228,7 +228,7 @@ Then we proceed as normal:
 p_last = (double *)p_last + 1;
 ```
 
-![Illustraion of Write double](/printf/write-double.svg)
+![Illustration of Write double](/printf/write-double.svg)
 
 Now we have written all parameters to the buffer. We can pass the buffer to `real_printf`.
 
