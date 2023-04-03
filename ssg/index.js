@@ -36,7 +36,7 @@ function generate() {
     R.compose(R.curry(File.append)(env.OUTPUT_META), JSON.stringify)(inputPostMetas)
 
     R.zipWith((meta, content) => R.compose(
-                    R.curry(File.write)(`${env.OUTPUT_POST}/${slugify(meta.title, {lower: true, remove: /[`'"]/g})}.vue`),
+                    R.curry(File.write)(`${env.OUTPUT_POST}/${slugify(meta.title, {lower: true, remove: /[`'"\(\)<>{}!@#$%^&*+/\\\?\.,\[\]]/g})}.vue`),
                     generateOutputPostFromTemplate
                 ) (meta, content), inputPostMetas, inputPostContents
     )
