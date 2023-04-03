@@ -47,7 +47,6 @@ However, this isn't the only way of passing parameters. In fact, with this schem
 Another way to do this is to write the parameters into a contiguous buffer in memory and pass the address of the buffer plus the number of parameters to the function, like this:
 
 ```MIPS
-
 la $a0, <buffer_address>
 
 li $t0, 10
@@ -90,7 +89,7 @@ Well, let's first talk from C++'s perspective: How does C++ process this stateme
 
 My initial-and-only guess is that it involves some compiler magic (maybe macro or something more than that). Precisely, some transformation happens:
 
-![C compiler magic](/printf/c++-compiler.svg)
+![C++ compiler magic](/printf/c++-compiler.svg)
 
 Of course, with this, some additional statements have to be prepended to write the parameters to a predefined buffer. Nevertheless, this is perfectly fine.
 
@@ -121,7 +120,131 @@ The above diagram shows what could happen behind the scene when the client code 
 
 Notice that the compiler can't do anything inside `printf` as it's already compiled. In other word, this scheme is feasible even when `printf` is compiled and the compiler can not see its source code. This contrasts with parameter pack & template where the compiler needs to (kind of) duplicate a function's source code.
 
-### It's real code now \*\*_elipsis_\*\*
+If the idea still evades you even after looking at the above diagram, let's walk through an example.
+
+Example settings: Assume that we are working with a 64-bit computer, and:
+
+* The memory is byte addressable.
+* A word is 64-bit in size.
+* An `int` and `float` is 4 bytes.
+* A `double` is 8 bytes.
+* A `pointer` type is 8 bytes.
+
+Now we take on the role of the compiler. When inspecting the client code, we see this:
+
+```C++
+printf("%s%d%f", "Hello World!", 86, 86.2003);
+```
+
+Using the idea we have, we translate it to this:
+
+```C++
+void* __internal_buffer = malloc(_BUFFER_SIZE);
+
+void* p_last = __internal_buffer;
+
+//realign_pointer(p_last)
+*(const char **)p_last = "Hello World";
+p_last = (char**)p_last + 1;
+
+//realign_int(p_last)
+*(int *)p_last = 86;
+p_last = (int*)p_last + 1;
+
+//realign_floating(p_last)
+*(double *)p_last = (double)86.2003;
+p_last = (double*)p_last + 1;
+
+
+printf_real("%s%d%f", __internal_buffer);
+
+
+free(__internal_buffer);
+```
+
+The following pictures illustrate how the above program would run step-by-step (little-endian assumed):
+
+* Buffer allocation:
+
+```C++
+void* __internal_buffer = malloc(_BUFFER_SIZE);
+```
+
+![Illustraion of Buffer Allocation](/printf/buffer-allocation.svg)
+
+* Initialize `p_last`:
+```C++
+void* p_last = __internal_buffer;
+```
+![Illustraion of p_last initialization](/printf/initialize-p_last.svg)
+
+* Write `const char*` to buffer
+
+C++ has assured that any memory allocated using malloc is aligned such that it can be be used for any data types (See [StackOverflow](https://stackoverflow.com/questions/8752546/how-does-malloc-understand-alignment)). Therefore, the first align operation is actually redundant.
+
+We reinterpret the `void *` `p_last` to `const char**`, which means we now see `p_last` as the address of a `const char*`. Therefore, we can do this:
+
+```C++
+*(const char**)p_last = "Hello World!";
+```
+
+We do not write the string directly but rather a pointer to it because the string can take up an arbitrary space on the buffer - the size information is not there! The pointer only occupy a fixed space and in this case it's taking 8 bytes. After this, `p_last` is moved to the right 8 bytes.
+
+![Illustraion of Write const char*](/printf/write-const-char-p.svg)
+
+```C++
+p_last = (char**)p_last + 1;
+```
+
+* Write `int` to buffer
+
+An `int` has a size of 4 bytes as assumed. Because `p_last` is `__internal_buffer + 8` and `__internal_buffer` is divisible by `8` (due to it being aligned to any data types), `p_last` now certainly is divisible by `4` - which means it's already aligned to `int`. No realignment is required here.
+
+Similarly, we reinterpret `p_last` as an address to an `int` and write `86` to that address:
+
+```C++
+*(int *)p_last = 86;
+p_last = (int*)p_last + 1; 
+```
+
+![Illustraion of Write int](/printf/write-int.svg)
+
+* Write a floating-point to buffer.
+
+While `float` and `double` is in different format and have different sizes, we can support both of them by casting the floating-point to a `double` before writing. We can now be reassured that the being-written value here is a `double`.
+
+A `double` is 8-bytes, however, `p_last` now is divisible by `4` but not by `8`. We must realign `p_last` before writing.
+
+```C++
+// realign_double(p_last) does something like the following
+p_last = (char*)p_last + 4;
+```
+![Illustraion of Realign double](/printf/align-double.svg)
+
+Then we proceed as normal:
+
+```C++
+*(double *)p_last = (double)86.2003;
+p_last = (double *)p_last + 1;
+```
+
+![Illustraion of Write double](/printf/write-double.svg)
+
+Now we have written all parameters to the buffer. We can pass the buffer to `real_printf`.
+
+```C++
+real_printf("%s%d%f", __internal_buffer);
+```
+
+The compiled `printf` would use the information encoded in the format string to scan the buffer in a manner similar to as when we write the buffer.
+
+After exitting the function, we deallocate the buffer.
+
+```C++
+free(__internal_buffer);
+```
+
+### It's real code now \*\*_ellipsis_\*\*
 
 For simplicity, I only support 4 format specifiers, that is:
 
