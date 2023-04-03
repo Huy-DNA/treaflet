@@ -44,7 +44,7 @@
         flex-direction: column;
         align-items: stretch;
         
-        height: 600px;
+        height: 800px;
     }
     div.card:hover { 
         background-color: $light-blue;
@@ -54,18 +54,22 @@
 
     div.thumbnail {
         background-image: var(--image-url);
-        background-size: cover;
+        background-size: contain;
         background-position: center center;
-        width: 100%;
-        height: 300px;
+        background-repeat: no-repeat;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        height: 400px;
     }
 
     h3.title {
         margin: 10px 15px;
         text-overflow: ellipsis;
-        white-space: nowrap;
         overflow: hidden;
         color: $blue;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
     }
 
     p.post-time {
@@ -79,7 +83,7 @@
     }
 
     div.card {
-        width: 85vw;
+        width: 80vw;
     }
 
     @media(min-width: 420px) {
@@ -90,8 +94,7 @@
 
     @media(min-width: 600px) {
         div.card {
-            max-width: 380px;
+            max-width: 390px;
         }
     }
-
 </style>
