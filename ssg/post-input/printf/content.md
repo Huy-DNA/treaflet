@@ -250,7 +250,7 @@ For simplicity, I only support 4 format specifiers, that is:
 
 * `%d`: an `int` goes into this.
 * `%s`: a `const char*` goes into this.
-* `%f`: a `double` goes into this (`float` is automatically promoted to `double` when passed through variadic). In non-variadic version, we have to handle this ourselves.
+* `%f`: a `double` goes into this (`float` is automatically promoted to `double` when passed through variadic). In non-variadic version, I only allow `double`, `float` would result in gibberish.
 * `%p`: a `const void*` pointer goes into this. The pointer is printed out in decimal.
 
 #### The highly abstract variadic version
@@ -322,5 +322,7 @@ I want to prove in this section that the schema in the above diagram can really 
 * Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
 
 As the post is already long now, I'll leave this to another post.
+
+_Link to the next post: [part 2](/posts/printf-a-speculative-implementation-(part-2))_
 
 Farewell!

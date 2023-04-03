@@ -166,13 +166,13 @@ free(__internal_buffer);
 </ul>
 <pre><label>C++</label><code class="language-C++">void* __internal_buffer = malloc(_BUFFER_SIZE);
 </code></pre>
-<p><img alt="Illustraion of Buffer Allocation" src="/printf/buffer-allocation.svg"></p>
+<p><img alt="Illustration of Buffer Allocation" src="/printf/buffer-allocation.svg"></p>
 <ul>
 <li>Initialize <code>p_last</code>:</li>
 </ul>
 <pre><label>C++</label><code class="language-C++">void* p_last = __internal_buffer;
 </code></pre>
-<p><img alt="Illustraion of p_last initialization" src="/printf/initialize-p_last.svg"></p>
+<p><img alt="Illustration of p_last initialization" src="/printf/initialize-p_last.svg"></p>
 <ul>
 <li>Write <code>const char*</code> to buffer</li>
 </ul>
@@ -181,7 +181,7 @@ free(__internal_buffer);
 <pre><label>C++</label><code class="language-C++">*(const char**)p_last = "Hello World!";
 </code></pre>
 <p>We do not write the string directly but rather a pointer to it because the string can take up an arbitrary space on the buffer - the size information is not there! The pointer only occupy a fixed space and in this case it's taking 8 bytes. After this, <code>p_last</code> is moved to the right 8 bytes.</p>
-<p><img alt="Illustraion of Write const char*" src="/printf/write-const-char-p.svg"></p>
+<p><img alt="Illustration of Write const char*" src="/printf/write-const-char-p.svg"></p>
 <pre><label>C++</label><code class="language-C++">p_last = (char**)p_last + 1;
 </code></pre>
 <ul>
@@ -192,7 +192,7 @@ free(__internal_buffer);
 <pre><label>C++</label><code class="language-C++">*(int *)p_last = 86;
 p_last = (int*)p_last + 1; 
 </code></pre>
-<p><img alt="Illustraion of Write int" src="/printf/write-int.svg"></p>
+<p><img alt="Illustration of Write int" src="/printf/write-int.svg"></p>
 <ul>
 <li>Write a floating-point to buffer.</li>
 </ul>
@@ -201,12 +201,12 @@ p_last = (int*)p_last + 1;
 <pre><label>C++</label><code class="language-C++">// realign_double(p_last) does something like the following
 p_last = (char*)p_last + 4;
 </code></pre>
-<p><img alt="Illustraion of Realign double" src="/printf/align-double.svg"></p>
+<p><img alt="Illustration of Realign double" src="/printf/align-double.svg"></p>
 <p>Then we proceed as normal:</p>
 <pre><label>C++</label><code class="language-C++">*(double *)p_last = (double)86.2003;
 p_last = (double *)p_last + 1;
 </code></pre>
-<p><img alt="Illustraion of Write double" src="/printf/write-double.svg"></p>
+<p><img alt="Illustration of Write double" src="/printf/write-double.svg"></p>
 <p>Now we have written all parameters to the buffer. We can pass the buffer to <code>real_printf</code>.</p>
 <pre><label>C++</label><code class="language-C++">real_printf("%s%d%f", __internal_buffer);
 </code></pre>
@@ -219,7 +219,7 @@ p_last = (double *)p_last + 1;
 <ul>
 <li><code>%d</code>: an <code>int</code> goes into this.</li>
 <li><code>%s</code>: a <code>const char*</code> goes into this.</li>
-<li><code>%f</code>: a <code>double</code> goes into this (<code>float</code> is automatically promoted to <code>double</code> when passed through variadic). In non-variadic version, we have to handle this ourselves.</li>
+<li><code>%f</code>: a <code>double</code> goes into this (<code>float</code> is automatically promoted to <code>double</code> when passed through variadic). In non-variadic version, I only allow <code>double</code>, <code>float</code> would result in gibberish.</li>
 <li><code>%p</code>: a <code>const void*</code> pointer goes into this. The pointer is printed out in decimal.</li>
 </ul>
 <h4 id="the-highly-abstract-variadic-version">The highly abstract variadic version</h4>
@@ -286,6 +286,7 @@ void variadic_printf(const char* format, ...) {
 <li>Write some example client code calling my <code>printf</code> implementation, hand it to my preprocessor before compiling. It should work and look identical to the real <code>printf</code> from the client code's point of view.</li>
 </ul>
 <p>As the post is already long now, I'll leave this to another post.</p>
+<p><em>Link to the next post: <a href="/posts/printf-a-speculative-implementation-(part-2)">part 2</a></em></p>
 <p>Farewell!</p>
 `
 
