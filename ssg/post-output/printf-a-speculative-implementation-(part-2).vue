@@ -46,8 +46,8 @@
     const content = `<h2 id="printf---a-speculative-implementation-part-2">printf - A speculative implementation (part 2)</h2>
 <p><em>Link to the previous post: <a href="/posts/printf-a-speculative-implementation">part 1</a></em></p>
 <p>In the previous post, I have shown a diagram describing a <strong>pobssible</strong> high-level mechanism of calling <code>printf</code>. I want to iterate that <strong>this is all my speculation</strong>. In this post, I will implement this approach.</p>
-<p><img alt="C++ compiler magic" src="/printf/c++-compiler.svg"></p>
-<p>The full code can be found on my github here: <img alt="Github repo of nonvariadic printf" src="https://github.com/HuyDNA/nonvariadic-printf"></p>
+<p><img alt="C++ compiler magic" src="/printf/high-level-imp.svg"></p>
+<p>The full code can be found on my github here: <a href="https://github.com/HuyDNA/nonvariadic-printf">HuyDNA/nonvariadic-printf</a></p>
 <h3 id="api-used-in-this-implementation">API used in this implementation</h3>
 <ul>
 <li><code>align</code> from <code>&lt;memory&gt;</code></li>

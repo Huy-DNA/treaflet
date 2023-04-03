@@ -4,9 +4,9 @@ _Link to the previous post: [part 1](/posts/printf-a-speculative-implementation)
 
 In the previous post, I have shown a diagram describing a **pobssible** high-level mechanism of calling `printf`. I want to iterate that **this is all my speculation**. In this post, I will implement this approach.
 
-![C++ compiler magic](/printf/c++-compiler.svg)
+![C++ compiler magic](/printf/high-level-imp.svg)
 
-The full code can be found on my github here: ![Github repo of nonvariadic printf](https://github.com/HuyDNA/nonvariadic-printf)
+The full code can be found on my github here: [HuyDNA/nonvariadic-printf](https://github.com/HuyDNA/nonvariadic-printf)
 
 ### API used in this implementation
 
