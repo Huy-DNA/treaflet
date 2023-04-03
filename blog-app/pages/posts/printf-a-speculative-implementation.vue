@@ -138,28 +138,31 @@ jal &lt;f_address&gt;
 <pre><label>C++</label><code class="language-C++">printf("%s%d%f", "Hello World!", 86, 86.2003);
 </code></pre>
 <p>Using the idea we have, we translate it to this:</p>
-<pre><label>C++</label><code class="language-C++">void* __internal_buffer = malloc(_BUFFER_SIZE);
+<pre><label>C++</label><code class="language-C++">{
+    void* __internal_buffer = malloc(_BUFFER_SIZE);
 
-void* p_last = __internal_buffer;
+    void* p_last = __internal_buffer;
 
-//realign_pointer(p_last)
-*(const char **)p_last = "Hello World";
-p_last = (char**)p_last + 1;
+    //realign_pointer(p_last)
+    *(const char **)p_last = "Hello World";
+    p_last = (char**)p_last + 1;
 
-//realign_int(p_last)
-*(int *)p_last = 86;
-p_last = (int*)p_last + 1;
+    //realign_int(p_last)
+    *(int *)p_last = 86;
+    p_last = (int*)p_last + 1;
 
-//realign_floating(p_last)
-*(double *)p_last = (double)86.2003;
-p_last = (double*)p_last + 1;
-
-
-printf_real("%s%d%f", __internal_buffer);
+    //realign_floating(p_last)
+    *(double *)p_last = (double)86.2003;
+    p_last = (double*)p_last + 1;
 
 
-free(__internal_buffer);
+    printf_real("%s%d%f", __internal_buffer);
+
+
+    free(__internal_buffer);
+}
 </code></pre>
+<p>A block is introduced here to avoid visible effects on the client code (namespace pollution).</p>
 <p>The following pictures illustrate how the above program would run step-by-step (little-endian assumed):</p>
 <ul>
 <li>Buffer allocation:</li>
