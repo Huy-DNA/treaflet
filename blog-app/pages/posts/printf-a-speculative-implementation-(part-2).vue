@@ -87,7 +87,7 @@
 #include &lt;memory&gt;
 #include "my_printf.h"
 
-void _my_printf_(const char* format, void* buffer) {
+void my_printf(const char* format, void* buffer) {
     void* p_last = buffer;
 
     const char* format_pos = format;
@@ -167,12 +167,12 @@ void _my_printf_(const char* format, void* buffer) {
 <pre><label>Python</label><code class="language-Python">import sys
 import re
 
-printfPattern = re.compile(r"my_printf\\s*\\(([^,;()]*)((?:,[^,;()]*)*)\\)\\s*;", re.MULTILINE | re.DOTALL)
+printfPattern = re.compile(r"my_printf\\s*\\(([^,]*)((?:,[^,]*)*)\\)\\s*;", re.MULTILINE | re.DOTALL)
 def printfSubstitute(match):
     def getWriteParamString(param):
         return f"""
             p_last = (char*)p_last - 1; // avoid the std::align pitfall
-            __realign(p_last, decltype({param} + 0));
+            __realign(p_last, decltype({param} + 0)*);
             *(decltype({param} + 0)*)p_last = {param};
             p_last = (decltype({param} + 0)*)p_last + 1;
         """
@@ -188,11 +188,8 @@ def printfSubstitute(match):
     return f"""{{
         void* __internal_buffer = malloc(10000);
         void* p_last = __internal_buffer;
-
         {paramWriteStatements}
-
-        _my_printf_({formatString}, __internal_buffer);
-
+        my_printf({formatString}, __internal_buffer);
         free(__internal_buffer);
     }}
     """
