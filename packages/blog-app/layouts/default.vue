@@ -1,26 +1,34 @@
 <template>
   <div class='wrapper'>
-    <nav class='header'>
-      <div class='header__right-placeholder'>
-        <font-awesome-icon :icon="faBars" />
-      </div>
-      <h1 class='header__brand-name'>
-        Treaflet
-      </h1>
-      <div class='header__right-placeholder' />
-    </nav>
-    <section class='content'>
-      <slot />
-    </section>
-    <footer class='footer'>
-    </footer>
+    <div class='wrapper__content'>
+      <nav class='header'>
+        <div class='header__right-placeholder'>
+          <font-awesome-icon :icon="faBars" />
+        </div>
+        <h1 class='header__brand-name'>
+          Treaflet
+        </h1>
+        <div class='header__right-placeholder' />
+      </nav>
+      <section class='content'>
+        <slot />
+      </section>
+      <footer class='footer'>
+      </footer>
+    </div>
   </div>
 </template>
 
 <style scoped>
   .wrapper {
     min-height: 100vh;
+    background-color: var(--slightly-dark-neutral);
+  }
+  .wrapper__content {
     background-color: var(--light-neutral);
+    min-height: 100vh;
+    margin-left: 5vw;
+    margin-right: 5vw;
   }
 
   .header {
