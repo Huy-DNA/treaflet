@@ -3,7 +3,7 @@
     <div class='wrapper__content'>
       <nav class='header'>
         <div class='header__right-placeholder'>
-          <font-awesome-icon :icon="faBars" />
+          <font-awesome-icon :icon="faBars"/>
         </div>
         <h1 class='header__brand-name'>
           Treaflet
@@ -20,9 +20,22 @@
 </template>
 
 <style scoped>
+  .wrapper::before {
+    display: block;
+    position: absolute;
+    top: -500px;
+    left: -500px;
+    min-width: 2000vw;
+    min-height: 2000vh;
+    transform: rotate(45deg);
+    background: repeat space 0% 0% / 100px url('~/assets/images/brand-logo.png'), var(--slightly-dark-neutral);
+    content: "";
+    z-index: -1;
+  }
   .wrapper {
-    min-height: 100vh;
-    background-color: var(--slightly-dark-neutral);
+    min-height: 100vh; 
+    position: relative;
+    overflow: hidden;
   }
   .wrapper__content {
     background-color: var(--light-neutral);
