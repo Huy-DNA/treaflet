@@ -6,3 +6,5 @@ import ts from 'highlight.js/lib/languages/typescript';
 hljs.registerLanguage('mips', mips);
 hljs.registerLanguage('cpp', cpp);
 hljs.registerLanguage('ts', ts);
+
+export { hljs };
