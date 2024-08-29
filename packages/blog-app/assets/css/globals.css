@@ -6,24 +6,25 @@
   --very-light-violet: #c641d0;
 
   --very-dark-neutral: #081b22;
-  --dark-neutral: #272f3a;
-  --neutral: #b3bec4;
-  --light-neutral: #e5eeed;
+  --dark-neutral: ##1a2a37;
+  --slightly-dark-neutral: #272f3a;
+  --neutral: #e5eeed;
+  --light-neutral: #fafafa;
   --very-light-neutral: #fcfafd;
 
-  --font-tiny: 16px;
-  --font-very-small: 24px;
-  --font-small: 36px;
-  --font-normal: 56px;
-  --font-large: 72px;
-  --font-very-large: 81px;
+  --font-tiny: 8px;
+  --font-very-small: 16px;
+  --font-small: 24px;
+  --font-normal: 36px;
+  --font-large: 56px;
+  --font-very-large: 72px;
   --font-huge: 100px;
 
-  --image-tiny: 16px;
-  --image-small: 24px;
-  --image-very-small: 36px;
-  --image-normal: 56px;
-  --image-large: 72px;
-  --image-very-large: 81px;
+  --image-tiny: 8px;
+  --image-small: 16px;
+  --image-very-small: 24px;
+  --image-normal: 36px;
+  --image-large: 56px;
+  --image-very-large: 72px;
   --image-huge: 100px;
 }

@@ -2,17 +2,17 @@ export type ImageSize = 'tiny' | 'very-small' | 'small' | 'normal' | 'large' | '
 export function imageSize (name: ImageSize): string {
   switch (name) {
     case 'tiny':
-      return '16px';
+      return '8px';
     case 'very-small':
-      return '24px';
+      return '16px';
     case 'small':
-      return '36px';
+      return '24px';
     case 'normal':
-      return '56px';
+      return '36px';
     case 'large':
-      return '72px';
+      return '56px';
     case 'very-large':
-      return '81px';
+      return '72px';
     case 'huge':
       return '100px'; 
   }
@@ -22,17 +22,17 @@ export type FontSize = 'tiny' | 'very-small' | 'small' | 'normal' | 'large' | 'v
 export function fontSize (name: ImageSize): string {
   switch (name) {
     case 'tiny':
-      return '16px';
+      return '8px';
     case 'very-small':
-      return '24px';
+      return '16px';
     case 'small':
-      return '36px';
+      return '24px';
     case 'normal':
-      return '56px';
+      return '36px';
     case 'large':
-      return '72px';
+      return '56px';
     case 'very-large':
-      return '81px';
+      return '72px';
     case 'huge':
       return '100px'; 
   }

@@ -1,7 +1,7 @@
 <template>
   <div class='wrapper'>
     <nav class='header'>
-      <BrandLogo width="very-large" class='header__brand-logo' />
+      <BrandLogo width="huge" class='header__brand-logo' />
       <h1 class='header__brand-name'>
         Treaflet
       </h1>
@@ -17,17 +17,18 @@
 
 <style scoped>
   .wrapper {
-    margin: 16px;
-    margin-left: 36px;
+    min-height: 100vh;
+    background-color: var(--slightly-dark-neutral);
   }
 
   .header {
     display: flex;
+    padding-left: 24px;
     gap: 16px;
-    font-size: 24px;
+    font-size: var(--font-small);
     align-items: center;
     justify-content: center;
-    background-color: violet;
+    background-color: var(--violet);
   }
   .header__brand-logo {
     flex: 1;
@@ -35,7 +36,7 @@
   .header__brand-name {
     flex: 10;
     text-align: center;
-    color: beige;
+    color: var(--light-neutral);
   }
   .header__right-placeholder {
     flex: 1;
