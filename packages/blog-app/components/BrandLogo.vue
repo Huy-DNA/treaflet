@@ -1,9 +1,11 @@
 <template>
-  <img
-    src='assets/images/brand-logo.png'
-    alt='treaflet brand logo'
-    :width='width'
-  />
+  <div>
+    <img
+      src='assets/images/brand-logo.png'
+      alt='treaflet brand logo'
+      :width='width'
+    />
+  </div>
 </template>
 
 <script setup lang="ts">
