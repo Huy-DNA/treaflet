@@ -19,6 +19,9 @@
     "sass-loader": "^16.0.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/free-solid-svg-icons": "^6.6.0",
+    "@fortawesome/vue-fontawesome": "^3.0.8",
     "@types/dompurify": "^3.0.5",
     "@types/node": "^22.5.1",
     "dompurify": "^3.1.6",
