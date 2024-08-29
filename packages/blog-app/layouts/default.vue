@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class='header'>
-      <p>Blogging In Hell</p>
+      <h1>Blogging In Hell</h1>
     </nav>
     <section class='content'>
       <slot />

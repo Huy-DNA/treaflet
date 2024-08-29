@@ -4,17 +4,21 @@ export default defineNuxtConfig({
     '~/assets/css/normalize.css',
     '~/assets/css/fonts.css',
   ],
+
   typescript: {
     strict: true,
     typeCheck: true,
   },
+
   ssr: true,
+
   alias: {
     '@': '~',
     'assets': '~/assets',
     'public': '~/public',
     'plugins': '~/plugins',
   },
+
   app: {
     head: {
       htmlAttrs: {
@@ -40,4 +44,6 @@ export default defineNuxtConfig({
       ],    
     }, 
   },
+
+  compatibilityDate: '2024-08-29',
 });
