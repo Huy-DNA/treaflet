@@ -16,7 +16,11 @@ export default defineNuxtConfig({
           name: 'viewport', 
           content: 'width=device-width, initial-scale=1',
         },
-      ],      
+        {
+          name: 'description',
+          content: 'A personal blog exploring concepts of various computer science topics',
+        },
+      ],    
     },
     css: [
       '@/assets/css/normalize.css',
