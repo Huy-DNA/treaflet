@@ -1,7 +1,10 @@
 <template>
   <div>
     <nav class='header'>
-      <h1>Treaflet</h1>
+      <BrandLogo :width="imageSize('normal')" />
+      <h1>
+        Treaflet
+      </h1>
     </nav>
     <section class='content'>
       <slot />
@@ -22,3 +25,7 @@
   .footer {
   }
 </style>
+
+<script setup lang="ts">
+  import { imageSize } from '@/style-guide';
+</script>
