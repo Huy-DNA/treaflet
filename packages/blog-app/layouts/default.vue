@@ -1,7 +1,7 @@
 <template>
   <div class='wrapper'>
     <nav class='header'>
-      <BrandLogo :width="imageSize('very-large')" class='header__brand-logo' />
+      <BrandLogo width="very-large" class='header__brand-logo' />
       <h1 class='header__brand-name'>
         Treaflet
       </h1>
@@ -27,6 +27,7 @@
     font-size: 24px;
     align-items: center;
     justify-content: center;
+    background-color: violet;
   }
   .header__brand-logo {
     flex: 1;
@@ -34,6 +35,7 @@
   .header__brand-name {
     flex: 10;
     text-align: center;
+    color: beige;
   }
   .header__right-placeholder {
     flex: 1;
@@ -45,7 +47,3 @@
   .footer {
   }
 </style>
-
-<script setup lang="ts">
-  import { imageSize } from '@/style-guide';
-</script>

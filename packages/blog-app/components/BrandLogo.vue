@@ -3,15 +3,17 @@
     <img
       src='assets/images/brand-logo.png'
       alt='treaflet brand logo'
-      :width='width'
+      :width='imageSize(width)'
     />
   </div>
 </template>
 
 <script setup lang="ts">
+  import { ImageSize, imageSize } from '@/style-guide';
+
   const props = defineProps<{
-    width?: string;
+    width?: ImageSize;
   }>();
 
-  const width = props.width || '16px';
+  const width = props.width || 'normal';
 </script>

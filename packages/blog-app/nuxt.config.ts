@@ -3,6 +3,7 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/normalize.css',
     '~/assets/css/fonts.css',
+    '~/assets/css/globals.css',
   ],
 
   typescript: {
