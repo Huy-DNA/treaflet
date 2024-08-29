@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   ssr: true,
+  alias: {
+    '@': '/<srcDir>',
+    'assets': '/<srcDir>/assets',
+    'public': '/<srcDir>/public',
+    'plugins': '/<srcDir>/plugins',
+  },
   app: {
     head: {
       htmlAttrs: {
