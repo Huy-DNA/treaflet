@@ -1,5 +1,5 @@
 {
-  "name": "@blogging-in-hell/content-generator",
+  "name": "@treaflet/content-generator",
   "version": "1.0.0",
   "description": "A script for generating posts for the blog app.",
   "scripts": {

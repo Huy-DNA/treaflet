@@ -1,5 +1,5 @@
 {
-  "name": "@blogging-in-hell/blog-app",
+  "name": "@treaflet/blog-app",
   "type": "module",
   "private": true,
   "scripts": {

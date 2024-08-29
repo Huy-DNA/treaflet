@@ -24,7 +24,7 @@ export default defineNuxtConfig({
       htmlAttrs: {
         lang: 'en',
       },
-      title: 'BloggingInHell',
+      title: 'Treaflet',
       script: [
         { src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js', async: true, }
       ],

@@ -1,5 +1,5 @@
 {
-  "name": "blogging-in-hell",
+  "name": "treaflet",
   "version": "1.0.0",
   "description": "A blog app containing the blog framework & the static content generator",
   "main": "index.js",
