@@ -12,6 +12,9 @@
 
 <style scoped>
   .header {
+    display: flex;
+    align-items: center;
+    justify-items: center;
   }
   .content {
   }

@@ -33,6 +33,7 @@ export default defineNuxtConfig({
     },
     css: [
       '@/assets/css/normalize.css',
+      '@/assets/css/fonts.css',
     ],
     typescript: {
       strict: true,
