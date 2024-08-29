@@ -1,0 +1,21 @@
+{
+  "name": "blogging-in-hell",
+  "version": "1.0.0",
+  "description": "A blog app containing the blog framework & the static content generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .ts,.js,.vue ."
+  },
+  "keywords": [
+    "blog",
+    "ssg"
+  ],
+  "author": "Huy-DNA",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.7",
+    "@nuxtjs/eslint-config-typescript": "^12.1.0",
+    "eslint": "^9.9.1"
+  }
+}
