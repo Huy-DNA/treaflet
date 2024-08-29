@@ -4,6 +4,8 @@ First try at building a decent blog app (which means previous attempts were inde
 
 Deployed at: https://blogginginhell.netlify.app/
 
+Edit: Revamped as of August 29 2024
+
 ## Lessons learned from weird bugs encountered
 
 * I shouldn't have tried to write the `ssg` module functionally.
