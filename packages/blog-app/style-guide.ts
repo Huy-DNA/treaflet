@@ -14,7 +14,6 @@ export function imageSize (name: ImageSize): string {
     case 'very-large':
       return '81px';
     case 'huge':
-      return '100px';
-    
+      return '100px'; 
   }
 }
