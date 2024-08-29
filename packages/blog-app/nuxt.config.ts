@@ -1,11 +1,19 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  css: [
+    '~/assets/css/normalize.css',
+    '~/assets/css/fonts.css',
+  ],
+  typescript: {
+    strict: true,
+    typeCheck: true,
+  },
   ssr: true,
   alias: {
-    '@': '/<srcDir>',
-    'assets': '/<srcDir>/assets',
-    'public': '/<srcDir>/public',
-    'plugins': '/<srcDir>/plugins',
+    '@': '~',
+    'assets': '~/assets',
+    'public': '~/public',
+    'plugins': '~/plugins',
   },
   app: {
     head: {
@@ -30,14 +38,6 @@ export default defineNuxtConfig({
           content: 'A personal blog exploring concepts of various computer science topics',
         },
       ],    
-    },
-    css: [
-      '@/assets/css/normalize.css',
-      '@/assets/css/fonts.css',
-    ],
-    typescript: {
-      strict: true,
-      typeCheck: true,
-    },
+    }, 
   },
 });
