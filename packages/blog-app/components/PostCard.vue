@@ -46,11 +46,11 @@
   .card {
     display: flex;
     justify-content: center;
-    height: 160px;
-    margin-left: 72px;
-    margin-right: 10vw;
+    height: 200px;
+    margin-left: 8vw;
+    margin-right: 8vw;
     margin-top: 36px;
-    gap: 24px;
+    gap: max(2vw, 36px);
   }
 
   .card:hover {
@@ -64,6 +64,6 @@
   }
 
   .card__content {
-    flex: 4;
+    flex: 3;
   }
 </style>
