@@ -2,13 +2,10 @@
   <div class='wrapper'>
     <div class='wrapper__content'>
       <nav class='header'>
-        <div class='header__right-placeholder'>
-          <font-awesome-icon :icon="faBars"/>
-        </div>
         <h1 class='header__brand-name'>
+          <font-awesome-icon :icon="faBars" :width="fontSize('small')" />
           Treaflet
         </h1>
-        <div class='header__right-placeholder' />
       </nav>
       <section class='content'>
         <slot />
@@ -45,24 +42,18 @@
   }
 
   .header {
-    display: flex;
+    padding-top: 24px;
     padding-left: 36px;
-    gap: 16px;
-    font-size: var(--font-very-small);
-    align-items: center;
-    justify-content: center;
-  }
-  .header__left-placeholder {
-    flex: 1;
-    align-content: center;
   }
   .header__brand-name {
+    display: flex;
+    align-items: center;
+    justify-content: left;
     flex: 10;
-    text-align: center;
+    text-align: left;
+    gap: 16px;
+    font-size: var(--font-normal);
     color: var(--dark-neutral);
-  }
-  .header__right-placeholder {
-    flex: 1;
   }
 
   .content {
@@ -85,4 +76,5 @@
 <script setup lang="ts">
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { faBars } from '@fortawesome/free-solid-svg-icons';
+  import { fontSize } from '@/style-guide'
 </script>
