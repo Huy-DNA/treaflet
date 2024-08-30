@@ -37,6 +37,12 @@
     position: relative;
     overflow: hidden;
   }
+  @media only screen and (max-width: 600px) {
+    .wrapper__content {
+      margin-left: 1vw;
+      margin-right: 1vw;
+    }
+  }
   .wrapper__content {
     background-color: var(--light-neutral);
     min-height: 100vh;
