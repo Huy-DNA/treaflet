@@ -50,6 +50,12 @@
   const createdAt = computed(() => {
     const now = DateTime.now();
     const daysDiff = Math.floor(now.diff(props.post.createdAt, 'days').toObject().days!);
+    if (daysDiff == 0) {
+      return 'Today';
+    }
+    if (daysDiff == 1) {
+      return 'Yesterday';
+    }
     if (daysDiff <= 7) {
       return `${daysDiff} days ago`;
     }
