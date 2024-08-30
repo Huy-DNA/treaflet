@@ -17,21 +17,9 @@
 </template>
 
 <style scoped>
-  .wrapper::before {
-    display: block;
-    position: absolute;
-    top: -1000vw;
-    left: -1000vw;
-    min-width: 2000vw;
-    min-height: 2000vh;
-    transform: rotate(45deg);
-    content: "";
-    z-index: -1;
-  }
   .wrapper {
     min-height: 100vh; 
-    position: relative;
-    overflow: hidden;
+    background-color: var(--neutral);
   }
 
   .wrapper__content {
@@ -39,6 +27,13 @@
     min-height: 100vh;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
+    box-shadow: 0px 0px 5px var(--slightly-dark-neutral);
+  }
+  @media only screen and (min-width: 600px) {
+    .wrapper__content {
+      margin-left: 3vw;
+      margin-right: 3vw;
+    }
   }
 
   .header {
@@ -60,16 +55,6 @@
   }
 
   .footer {
-  }
-
-  @media only screen and (min-width: 600px) {
-    .wrapper::before {
-      background: repeat space 0% 0% / 100px url('~/assets/images/brand-logo.png'), var(--slightly-dark-neutral);
-    }
-    .wrapper__content {
-      margin-left: 3vw;
-      margin-right: 3vw;
-    }
   }
 </style>
 
