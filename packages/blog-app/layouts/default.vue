@@ -10,7 +10,7 @@
           to="/"
           role="button"
         >
-          <BrandLogo width="slightly-large" />
+          <BrandLogo width="large" />
           Treaflet
         </NuxtLink>
       </nav>
@@ -50,7 +50,7 @@
     flex: 10;
     text-align: left;
     gap: 10px;
-    font-size: var(--font-normal);
+    font-size: var(--font-slightly-large);
     color: var(--dark-neutral);
   }
 
