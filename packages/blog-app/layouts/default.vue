@@ -33,7 +33,7 @@
   }
 
   .wrapper__content {
-    background-color: var(--light-neutral);
+    background-color: var(--very-light-neutral);
     min-height: 100vh;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
