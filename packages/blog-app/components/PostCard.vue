@@ -10,7 +10,9 @@
     >
     <div class="card__content">
       <h2 class="card__content__title">
-        {{ props.post.title }}
+        <NuxtLink>
+          {{ props.post.title }}
+        </NuxtLink>
       </h2>
       <p class="card__content__date">
         {{ createdAt }}
