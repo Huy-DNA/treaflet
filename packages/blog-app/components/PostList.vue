@@ -42,7 +42,4 @@
 </script>
 
 <style scoped>
-  .wrapper {
-    margin-top: 56px;
-  }
 </style>

@@ -33,12 +33,11 @@
 
   .wrapper__content {
     min-height: 100vh;
-    margin-left: 0.5vw;
-    margin-right: 0.5vw;
   }
 
   .header {
     position: sticky;
+    gap: 24px;
     padding-top: 24px;
     padding-left: 36px;
   }
@@ -48,14 +47,14 @@
     justify-content: left;
     font-weight: bold;
     text-decoration: none;
-    flex: 10;
     text-align: left;
     gap: 10px;
     font-size: var(--font-slightly-large);
     color: var(--dark-neutral);
   }
-
+  
   .content {
+    margin-top: 56px;
   }
 
   .footer {
@@ -63,5 +62,5 @@
 </style>
 
 <script setup lang="ts">
-  import { fontSize } from '@/style-guide'
+  import { fontSize } from '@/style-guide';
 </script>
