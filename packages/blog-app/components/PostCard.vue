@@ -9,8 +9,12 @@
       :alt="props.post.summary"
     >
     <div class="card__content">
-      <h2>{{ props.post.title }}</h2>
-      <p>{{ createdAt }}</p>
+      <h2 class="card__content__title">
+        {{ props.post.title }}
+      </h2>
+      <p class="card__content__date">
+        {{ createdAt }}
+      </p>
       <p>{{ props.post.summary }}</p>
       <div>
         <span
@@ -65,5 +69,15 @@
 
   .card__content {
     flex: 3;
+  }
+  .card__content__title {
+    font-size: var(--font-normal);
+    margin-top: 0;
+    margin-bottom: 8px;
+  }
+  .card__content__date {
+    font-size: var(--font-small);
+    color: var(--slightly-dark-neutral);
+    margin-top: 0;
   }
 </style>
