@@ -16,7 +16,13 @@
         {{ createdAt }}
       </p>
       <div class="card__taglist">
-        Topics: <span v-if="props.post.tags.length === 0">Not found</span>
+        Topics:
+        <span
+          v-if="props.post.tags.length === 0"
+          :style="{ color: 'var(--slightly-dark-neutral)' }"
+        >
+          Not found
+        </span>
         <span
           v-for="(tag, idx) in props.post.tags"
           :key="tag.name"
