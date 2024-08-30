@@ -1,15 +1,12 @@
 <template>
   <div class="wrapper">
-    <PostCard v-for="post in posts" :key="post.slug" :post="post" />
+    <PostList :posts="posts" />
   </div>
 </template>
 
 <script setup lang="ts">
-  import posts from 'public/posts';
+  import posts from 'public/posts.ts';
 </script>
 
 <style scoped>
-  .wrapper {
-    margin-top: 56px;
-  }
 </style>
