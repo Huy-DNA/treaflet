@@ -5,6 +5,6 @@
   import type { PostMeta } from '@/types';
   
   const props = defineProps<{
-    posts: PostMeta;
+    post: PostMeta;
   }>();
 </script>
