@@ -23,8 +23,8 @@
   .wrapper::before {
     display: block;
     position: absolute;
-    top: -500px;
-    left: -500px;
+    top: -1000vw;
+    left: -1000vw;
     min-width: 2000vw;
     min-height: 2000vh;
     transform: rotate(45deg);
