@@ -2,10 +2,13 @@
   <div class='wrapper'>
     <div class='wrapper__content'>
       <nav class='header'>
-        <h1 class='header__brand-name'>
+        <a
+          class='header__brand-name'
+          href='/'
+        >
           <BrandLogo width="slightly-large" />
           Treaflet
-        </h1>
+        </a>
       </nav>
       <section class='content'>
         <slot />
@@ -44,6 +47,8 @@
     display: flex;
     align-items: center;
     justify-content: left;
+    font-weight: bold;
+    text-decoration: none;
     flex: 10;
     text-align: left;
     gap: 10px;
