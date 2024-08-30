@@ -54,7 +54,7 @@
   }
   
   .content {
-    margin-top: 56px;
+    margin-top: 72px;
   }
 
   .footer {
