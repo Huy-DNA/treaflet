@@ -14,7 +14,7 @@ const posts: PostCollection = [
     modifiedAt: today,
     summary: 'A post written at today',
     tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/public/logos.jpeg',
+    thumbnailUrl: '/logos.jpeg',
   },
   {
     title: 'Yesterday post',
@@ -23,7 +23,7 @@ const posts: PostCollection = [
     modifiedAt: yesterday,
     summary: 'A post written at yesterday',
     tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/public/logos.jpeg',
+    thumbnailUrl: '/logos.jpeg',
   },
   {
     title: 'Last month post',
@@ -32,7 +32,7 @@ const posts: PostCollection = [
     modifiedAt: lastMonth,
     summary: 'A post written in last month',
     tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/public/logos.jpeg',
+    thumbnailUrl: '/logos.jpeg',
   },
   {
     title: 'Today post 2 with no tags',
@@ -41,7 +41,7 @@ const posts: PostCollection = [
     modifiedAt: lastMonth,
     summary: 'A post written in today',
     tags: [],
-    thumbnailUrl: '/public/logos.jpeg',
+    thumbnailUrl: '/logos.jpeg',
   },
 ]
 
