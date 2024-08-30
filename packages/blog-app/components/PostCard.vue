@@ -15,13 +15,18 @@
       <p class="card__content__date">
         {{ createdAt }}
       </p>
-      <p>{{ props.post.summary }}</p>
-      <div>
+      <p class="card__content__summary">
+        {{ props.post.summary }}
+      </p>
+      <div class="card__taglist">
+        {{ props.post.tags.length > 0 ? 'Topics:' : '' }}
         <span
-          v-for="tag in props.post.tags"
+          v-for="(tag, idx) in props.post.tags"
           :key="tag.name"
         >
-          {{ tag.name }}
+          <a class="card__taglist__tag">
+            {{ tag.name }} {{ idx !== props.post.tags.length - 1 ? ',' : '' }}
+          </a>
         </span>
       </div>
     </div>
@@ -54,17 +59,17 @@
     margin-left: 8vw;
     margin-right: 8vw;
     margin-top: 36px;
+    margin-bottom: 36px;
     gap: max(2vw, 36px);
   }
-
-  .card:hover {
-    cursor: pointer;
-  }
-
+ 
   .card__thumbnail {
     flex: 1;
     object-fit: contain;
     background-color: var(--neutral);
+  }
+  .card__thumbnail:hover {
+    cursor: pointer;
   }
 
   .card__content {
@@ -75,9 +80,25 @@
     margin-top: 0;
     margin-bottom: 8px;
   }
+  .card__content__title:hover {
+    cursor: pointer;
+  }
   .card__content__date {
     font-size: var(--font-small);
     color: var(--slightly-dark-neutral);
     margin-top: 0;
+  }
+  .card__content__summary {
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+  .card__taglist {
+    display: flex;
+    flex-flow: row nowrap;
+    gap: 6px;
+  }
+  .card__taglist__tag:hover {
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>
