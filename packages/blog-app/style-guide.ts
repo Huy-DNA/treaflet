@@ -8,11 +8,11 @@ export function imageSize (name: ImageSize): string {
     case 'small':
       return '16px';
     case 'normal':
-      return '24px';
+      return '20px';
     case 'slightly-large':
-      return '36px';
+      return '24px';
     case 'large':
-      return '56px';
+      return '36px';
     case 'very-large':
       return '72px';
     case 'huge':
@@ -30,11 +30,11 @@ export function fontSize (name: FontSize): string {
     case 'small':
       return '16px';
     case 'normal':
-      return '24px';
+      return '20px';
     case 'slightly-large':
-      return '36px';
+      return '24px';
     case 'large':
-      return '56px';
+      return '36px';
     case 'very-large':
       return '72px';
     case 'huge':

@@ -16,18 +16,18 @@
   --font-tiny: 8px;
   --font-very-small: 10px;
   --font-small: 16px;
-  --font-normal: 24px;
-  --font-slightly-large: 36px;
-  --font-large: 56px;
+  --font-normal: 20px;
+  --font-slightly-large: 24px;
+  --font-large: 36px;
   --font-very-large: 72px;
   --font-huge: 100px;
 
   --image-tiny: 8px;
   --image-small: 10px;
   --image-very-small: 16px;
-  --image-normal: 24px;
-  --image-slightly-large: 36px;
-  --image-large: 56px;
+  --image-normal: 20px;
+  --image-slightly-large: 24px;
+  --image-large: 36px;
   --image-very-large: 72px;
   --image-huge: 100px;
 }

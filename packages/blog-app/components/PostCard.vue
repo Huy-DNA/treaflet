@@ -82,7 +82,7 @@
     -webkit-line-clamp: 1;
     overflow: hidden;
     text-overflow: ellipsis;
-    font-size: var(--font-normal);
+    font-size: var(--font-slightly-large);
     margin-top: 0;
     margin-bottom: 8px;
   }
@@ -111,5 +111,6 @@
     -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: var(--font-normal)
   }
 </style>
