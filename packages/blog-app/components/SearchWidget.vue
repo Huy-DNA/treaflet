@@ -7,6 +7,7 @@
       <input
         type="search"
         class="search-box__box"
+        v-model="searchText"
       />
     </div>
   </div>
@@ -15,6 +16,8 @@
 <script setup lang="ts">
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
+  const searchText = ref('');
 </script>
 
 <style scoped>
