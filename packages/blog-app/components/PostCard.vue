@@ -15,11 +15,8 @@
       <p class="card__content__date">
         {{ createdAt }}
       </p>
-      <p class="card__content__summary">
-        {{ props.post.summary }}
-      </p>
       <div class="card__taglist">
-        {{ props.post.tags.length > 0 ? 'Topics:' : '' }}
+        Topics: <span v-if="props.post.tags.length === 0">Not found</span>
         <span
           v-for="(tag, idx) in props.post.tags"
           :key="tag.name"
@@ -29,6 +26,9 @@
           </a>
         </span>
       </div>
+      <p class="card__content__summary">
+        {{ props.post.summary }}
+      </p>
     </div>
   </div>
 </template>
@@ -74,8 +74,14 @@
 
   .card__content {
     flex: 3;
+    display: flex;
+    flex-flow: column nowrap;
   }
+
   .card__content__title {
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: var(--font-normal);
     margin-top: 0;
     margin-bottom: 8px;
@@ -83,15 +89,14 @@
   .card__content__title:hover {
     cursor: pointer;
   }
+
   .card__content__date {
     font-size: var(--font-small);
     color: var(--slightly-dark-neutral);
     margin-top: 0;
+    margin-bottom: 8px;
   }
-  .card__content__summary {
-    -webkit-line-clamp: 3;
-    overflow: hidden;
-  }
+
   .card__taglist {
     display: flex;
     flex-flow: row nowrap;
@@ -100,5 +105,11 @@
   .card__taglist__tag:hover {
     text-decoration: underline;
     cursor: pointer;
+  }
+
+  .card__content__summary {
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 </style>
