@@ -28,7 +28,7 @@
     min-width: 2000vw;
     min-height: 2000vh;
     transform: rotate(45deg);
-    background: repeat space 0% 0% / 100px url('~/assets/images/brand-logo.png'), var(--slightly-dark-neutral);
+    background: var(--slightly-dark-neutral);
     content: "";
     z-index: -1;
   }
@@ -43,12 +43,6 @@
     min-height: 100vh;
     margin-left: 1vw;
     margin-right: 1vw;
-  }
-  @media only screen and (min-width: 400px) {
-    .wrapper__content {
-      margin-left: 5vw;
-      margin-right: 5vw;
-    }
   }
 
   .header {
@@ -76,6 +70,16 @@
   }
 
   .footer {
+  }
+
+  @media only screen and (min-width: 400px) {
+    .wrapper::before {
+      background: repeat space 0% 0% / 100px url('~/assets/images/brand-logo.png'), var(--slightly-dark-neutral);
+    }
+    .wrapper__content {
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
   }
 </style>
 
