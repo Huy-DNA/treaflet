@@ -5,14 +5,14 @@
         class="header"
         role="banner"
       >
-        <a
+        <NuxtLink
           class="header__brand-name"
-          href="/"
+          to="/"
           role="button"
         >
           <BrandLogo width="slightly-large" />
           Treaflet
-        </a>
+        </NuxtLink>
       </nav>
       <section
         class="content"

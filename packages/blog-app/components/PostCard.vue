@@ -27,9 +27,9 @@
           v-for="(tag, idx) in props.post.tags"
           :key="tag.name"
         >
-          <a class="card__taglist__tag">
+          <NuxtLink class="card__taglist__tag">
             {{ tag.name }} {{ idx !== props.post.tags.length - 1 ? ',' : '' }}
-          </a>
+          </NuxtLink>
         </span>
       </div>
       <p class="card__content__summary">
