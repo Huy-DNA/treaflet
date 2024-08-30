@@ -12,6 +12,14 @@
       <h2>{{ props.post.title }}</h2>
       <p>{{ createdAt }}</p>
       <p>{{ props.post.summary }}</p>
+      <div>
+        <span
+          v-for="tag in props.post.tags"
+          :key="tag.name"
+        >
+          {{ tag.name }}
+        </span>
+      </div>
     </div>
   </div>
 </template>
