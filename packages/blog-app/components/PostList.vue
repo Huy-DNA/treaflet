@@ -10,6 +10,20 @@
   const props = defineProps<{
     posts: PostCollection;
   }>();
+
+  const emits = defineEmits<{
+    (e: 'scrollEnd'): void
+  }>();
+
+  const scrollEndEventListener = ref<null | ReturnType<typeof addEventListener>>(null);
+  onMounted(() => {
+    scrollEndEventListener.value = document.addEventListener('scroll', () => {
+      if (window.scrollY === window.innerHeight) {
+        emits('scrollEnd');
+      }
+    });
+  })
+  onUnmounted(() => document.removeEventListener('scroll', scrollEndEventListener.value));
 </script>
 
 <style scoped>
