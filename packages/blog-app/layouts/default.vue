@@ -38,6 +38,7 @@
   }
 
   .header {
+    position: sticky;
     padding-top: 24px;
     padding-left: 36px;
   }
