@@ -3,7 +3,7 @@
     <div class='wrapper__content'>
       <nav class='header'>
         <h1 class='header__brand-name'>
-          <font-awesome-icon :icon="faBars" :width="fontSize('small')" />
+          <BrandLogo width="slightly-large" />
           Treaflet
         </h1>
       </nav>
@@ -46,7 +46,7 @@
     justify-content: left;
     flex: 10;
     text-align: left;
-    gap: 16px;
+    gap: 10px;
     font-size: var(--font-normal);
     color: var(--dark-neutral);
   }
@@ -59,7 +59,5 @@
 </style>
 
 <script setup lang="ts">
-  import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-  import { faBars } from '@fortawesome/free-solid-svg-icons';
   import { fontSize } from '@/style-guide'
 </script>
