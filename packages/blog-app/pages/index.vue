@@ -1,11 +1,13 @@
 <template>
   <div class="wrapper">
-    <PostList :posts="posts" />
+    <PostList
+      :posts="posts"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
-  import posts from 'public/posts.ts';
+  import posts from 'public/posts';
 </script>
 
 <style scoped>
