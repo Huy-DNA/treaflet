@@ -29,21 +29,12 @@
 <style scoped>
   .wrapper {
     min-height: 100vh; 
-    background-color: var(--neutral);
   }
 
   .wrapper__content {
-    background-color: var(--very-light-neutral);
     min-height: 100vh;
     margin-left: 0.5vw;
     margin-right: 0.5vw;
-    box-shadow: 0px 0px 5px var(--slightly-dark-neutral);
-  }
-  @media only screen and (min-width: 600px) {
-    .wrapper__content {
-      margin-left: 3vw;
-      margin-right: 3vw;
-    }
   }
 
   .header {
