@@ -1,3 +1,5 @@
+import type { DateTime } from 'luxon';
+
 export type PostCollection = PostMeta[];
 
 export type PostMeta = Omit<Post, 'content'>;
@@ -5,8 +7,8 @@ export type PostMeta = Omit<Post, 'content'>;
 export interface Post {
   title: string;
   slug: string;
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt: DateTime;
+  modifiedAt: DateTime;
   summary?: string;
   content: string;
   tags: Tag[];
