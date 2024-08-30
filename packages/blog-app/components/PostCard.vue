@@ -34,6 +34,7 @@
     justify-content: center;
     height: 160px;
     margin-left: 10vw;
+    margin-right: 10vw;
     margin-top: 36px;
     gap: 24px;
   }
