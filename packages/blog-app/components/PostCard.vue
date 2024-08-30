@@ -70,8 +70,8 @@
     height: 200px;
     margin-left: 8vw;
     margin-right: 8vw;
-    margin-top: 36px;
-    margin-bottom: 36px;
+    margin-top: 45px;
+    margin-bottom: 45px;
     gap: max(2vw, 36px);
   }
  
