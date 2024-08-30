@@ -93,6 +93,7 @@
     margin-bottom: 8px;
   }
   .card__content__title:hover {
+    text-decoration: underline;
     cursor: pointer;
   }
 
