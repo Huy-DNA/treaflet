@@ -48,7 +48,7 @@
     display: flex;
     padding-left: 36px;
     gap: 16px;
-    font-size: var(--font-small);
+    font-size: var(--font-very-small);
     align-items: center;
     justify-content: center;
   }
