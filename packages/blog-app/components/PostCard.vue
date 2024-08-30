@@ -9,8 +9,8 @@
       :alt="props.post.summary"
     >
     <div class="card__content">
-      <h2 class="card__content__title">
-        <NuxtLink>
+      <h2>
+        <NuxtLink class="card__content__title">
           {{ props.post.title }}
         </NuxtLink>
       </h2>
