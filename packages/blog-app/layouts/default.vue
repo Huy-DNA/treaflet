@@ -44,7 +44,7 @@
     margin-left: 1vw;
     margin-right: 1vw;
   }
-  @media only screen and (min-width: 600px) {
+  @media only screen and (min-width: 400px) {
     .wrapper__content {
       margin-left: 5vw;
       margin-right: 5vw;
