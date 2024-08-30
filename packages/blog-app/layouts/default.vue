@@ -37,17 +37,18 @@
     position: relative;
     overflow: hidden;
   }
-  @media only screen and (max-width: 600px) {
-    .wrapper__content {
-      margin-left: 1vw;
-      margin-right: 1vw;
-    }
-  }
+
   .wrapper__content {
     background-color: var(--light-neutral);
     min-height: 100vh;
-    margin-left: 5vw;
-    margin-right: 5vw;
+    margin-left: 1vw;
+    margin-right: 1vw;
+  }
+  @media only screen and (min-width: 600px) {
+    .wrapper__content {
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
   }
 
   .header {
