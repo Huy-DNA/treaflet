@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-  import { ImageSize, imageSize } from '@/style-guide';
+  import { type ImageSize, imageSize } from '@/style-guide';
 
   const props = defineProps<{
     width?: ImageSize;
