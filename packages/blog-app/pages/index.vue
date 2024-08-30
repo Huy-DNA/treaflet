@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper">
+    <SearchWidget />
     <PostList
       :posts="posts"
     />
