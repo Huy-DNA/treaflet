@@ -1,19 +1,26 @@
 <template>
-  <div class='wrapper'>
-    <div class='wrapper__content'>
-      <nav class='header'>
+  <div class="wrapper">
+    <div class="wrapper__content">
+      <nav
+        class="header"
+        role="banner"
+      >
         <a
-          class='header__brand-name'
-          href='/'
+          class="header__brand-name"
+          href="/"
+          role="button"
         >
           <BrandLogo width="slightly-large" />
           Treaflet
         </a>
       </nav>
-      <section class='content'>
+      <section
+        class="content"
+        role="article"
+      >
         <slot />
       </section>
-      <footer class='footer'>
+      <footer class="footer">
       </footer>
     </div>
   </div>
