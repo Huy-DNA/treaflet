@@ -36,7 +36,6 @@
   }
 
   .header {
-    position: sticky;
     gap: 24px;
     padding-top: 24px;
     padding-left: 36px;
