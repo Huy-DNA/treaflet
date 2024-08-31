@@ -9,6 +9,7 @@
         class="search-box__box"
         placeholder="Search for a post"
         v-model="searchText"
+        @change="onChange"
       />
     </div>
   </div>
@@ -17,8 +18,16 @@
 <script setup lang="ts">
   import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
   import { faSearch } from '@fortawesome/free-solid-svg-icons';
+  const emits = defineEmits<{
+    (e: 'search', text: string): void;
+  }>();
 
   const searchText = ref('');
+
+
+  function onChange () {
+    emits('search', searchText.value);
+  }
 </script>
 
 <style scoped>
