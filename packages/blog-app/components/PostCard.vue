@@ -69,7 +69,7 @@
   .card {
     display: flex;
     justify-content: center;
-    height: 200px;
+    height: 220px;
     margin-left: 8vw;
     margin-right: 8vw;
     margin-top: 45px;
@@ -93,7 +93,9 @@
   }
 
   .card__content__title {
+    display: -webkit-box;
     -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--font-slightly-large);
@@ -123,6 +125,8 @@
   }
 
   .card__content__summary {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
