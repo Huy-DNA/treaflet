@@ -17,6 +17,8 @@
   function onSearch (text: string) {
     if (text) {
       posts.value = fusedPosts.search(text).map(({ item }) => item);
+    } else {
+      posts.value = _posts;
     }
   }
 </script>
