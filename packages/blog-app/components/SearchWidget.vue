@@ -25,7 +25,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 56px;
+    margin-bottom: 72px;
   }
 
   .search-box {
