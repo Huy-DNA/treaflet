@@ -84,6 +84,7 @@
     flex: 1;
     object-fit: contain;
     background-color: var(--neutral);
+    box-shadow: 0px 0px 4px var(--slightly-dark-neutral);
   }
   .card__thumbnail:hover {
     cursor: pointer;
