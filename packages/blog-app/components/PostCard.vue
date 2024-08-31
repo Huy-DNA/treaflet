@@ -96,6 +96,8 @@
   }
 
   .card__content__title {
+    color: var(--dark-neutral);
+    text-decoration: none;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
