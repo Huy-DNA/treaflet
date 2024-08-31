@@ -3,7 +3,7 @@
     class="wrapper"
   >
     <div class="search-box">
-      <font-awesome-icon :icon="faSearch" class="search-box__icon" />
+      <font-awesome-icon :icon="faSearch" class="search-box__icon" width="16px" />
       <input
         type="search"
         class="search-box__box"
