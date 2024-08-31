@@ -73,8 +73,8 @@
     display: flex;
     justify-content: center;
     height: 220px;
-    margin-left: 8vw;
-    margin-right: 8vw;
+    width: min(95%, 1200px);
+    margin: auto;
     margin-top: 45px;
     margin-bottom: 45px;
     gap: max(2vw, 36px);
