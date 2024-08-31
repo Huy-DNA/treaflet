@@ -1,6 +1,14 @@
 <template>
   <div class="wrapper">
-    <PostCard v-for="post in props.posts.slice(0, postLength)" :key="post.slug" :post="post" />
+    <div v-if="props.posts.length">
+      <PostCard v-for="post in props.posts.slice(0, postLength)" :key="post.slug" :post="post" />
+    </div>
+    <p 
+      v-else
+      :style="{ 'font-size': 'var(--font-slightly-large)', 'text-align': 'center' }"
+    >
+      No posts found
+    </p>
   </div>
 </template>
 

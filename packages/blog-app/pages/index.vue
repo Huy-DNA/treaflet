@@ -13,6 +13,7 @@
 
   const posts = ref(_posts);
   const fusedPosts = new Fuse(_posts, { isCaseSensitive: false, keys: ['title', 'summary'] })
+
   function onSearch (text: string) {
     if (text) {
       posts.value = fusedPosts.search(text).map(({ item }) => item);
