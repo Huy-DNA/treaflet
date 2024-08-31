@@ -3,11 +3,16 @@
     class="card"
     role="button"
   >
-    <img
+    <NuxtLink
       class="card__thumbnail"
-      :src="props.post.thumbnailUrl"
-      :alt="props.post.summary"
+      :to="`/posts/${props.post.slug}`"
     >
+      <img
+        :src="props.post.thumbnailUrl"
+        :alt="props.post.summary"
+        height="220px"
+      >
+    </NuxtLink>
     <div class="card__content">
       <h2>
         <NuxtLink
@@ -82,7 +87,9 @@
  
   .card__thumbnail {
     flex: 1;
-    object-fit: contain;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: var(--neutral);
     box-shadow: 0px 0px 4px var(--slightly-dark-neutral);
   }
