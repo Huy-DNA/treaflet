@@ -10,7 +10,10 @@
     >
     <div class="card__content">
       <h2>
-        <NuxtLink class="card__content__title">
+        <NuxtLink
+          class="card__content__title"
+          :to="`/posts/${props.post.slug}`"
+        >
           {{ props.post.title }}
         </NuxtLink>
       </h2>
