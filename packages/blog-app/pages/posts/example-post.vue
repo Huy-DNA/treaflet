@@ -6,9 +6,55 @@
     <p class='post__date'>
       {{ createdAt }}
     </p>
-    <main v-html="post.content" />
+    <main
+      class='post__content'
+      v-html="post.content"
+    />
   </article>
 </template>
+
+<style scoped>
+  .post {
+    margin-left: min(5vw, 72px);
+    margin-right: min(5vw, 72px);
+  }
+  
+  .post__title {
+    text-align: center;
+    color: var(--violet);
+    font-size: var(--font-very-large);
+    margin-bottom: 8px;
+  }
+  
+  .post__date {
+    text-align: center;
+    color: var(--slightly-dark-neutral);
+    margin-top: 0;
+  }
+
+  .post__content {
+    margin-top: 36px;
+    margin-bottom: 36px;
+  }
+
+  h2 {
+    color: var(--violet);
+    font-size: var(--font-large);
+  }
+
+  h3 {
+    color: var(--violet);
+    font-size: var(--font-slightly-large);
+  }
+
+  h4 {
+    color: var(--violet);
+  }
+
+  p, h4 {
+    font-size: var(--font-normal);
+  }
+</style>
 
 <script setup lang="ts">
   import { DateTime } from 'luxon';
@@ -22,7 +68,6 @@
     modifiedAt: DateTime.now(),
     summary: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     content: `
-<h1>Lorem Ipsum</h1>
 <h2>What is Lorem Ipsum?</h2>
 <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 </div><div>
