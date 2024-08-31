@@ -7,6 +7,7 @@
       <input
         type="search"
         class="search-box__box"
+        placeholder="Search for a post"
         v-model="searchText"
       />
     </div>
