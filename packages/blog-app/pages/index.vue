@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <SearchWidget />
+    <SearchWidget @search="onSearch" />
     <PostList
       :posts="posts"
     />
@@ -8,7 +8,16 @@
 </template>
 
 <script setup lang="ts">
-  import posts from 'public/posts';
+  import Fuse from 'fuse.js';
+  import _posts from 'public/posts';
+
+  const posts = ref(_posts);
+  const fusedPosts = new Fuse(_posts, { isCaseSensitive: false, keys: ['title', 'summary'] })
+  function onSearch (text: string) {
+    if (text) {
+      posts.value = fusedPosts.search(text).map(({ item }) => item);
+    }
+  }
 </script>
 
 <style scoped>

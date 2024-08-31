@@ -9,7 +9,7 @@
         class="search-box__box"
         placeholder="Search for a post"
         v-model="searchText"
-        @change="onChange"
+        @input="onInput"
       />
     </div>
   </div>
@@ -25,7 +25,7 @@
   const searchText = ref('');
 
 
-  function onChange () {
+  function onInput () {
     emits('search', searchText.value);
   }
 </script>
