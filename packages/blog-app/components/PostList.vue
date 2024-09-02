@@ -24,22 +24,28 @@
   const scrollEndEventListener = ref<null | ReturnType<typeof addEventListener>>(null);
   onMounted(() => {
     scrollEndEventListener.value = document.addEventListener('scroll', () => {
-      if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         loadPosts();
       }
     });
   });
   onUnmounted(() => document.removeEventListener('scroll', scrollEndEventListener.value));
 
+  const isLoading = ref(false);
   function loadPosts () {
-    if (props.posts.length >= postLength.value) {
+    if (props.posts.length < postLength.value) {
       return;
     }
+    if (isLoading.value) {
+      return;
+    }
+    isLoading.value = true;
     document.body.style.cursor = 'wait';
     setTimeout(() => {
       postLength.value += 4;
       document.body.style.cursor = 'auto';
-    }, 1000)
+      isLoading.value = false;
+    }, 1000);
   }
 </script>
 
