@@ -30,14 +30,14 @@ export function fontSize (name: FontSize): string {
     case 'small':
       return '16px';
     case 'normal':
-      return '20px';
+      return '18px';
     case 'slightly-large':
-      return '24px';
+      return '20px';
     case 'large':
-      return '36px';
+      return '24px';
     case 'very-large':
-      return '72px';
+      return '36px';
     case 'huge':
-      return '100px'; 
+      return '45px'; 
   }
 }

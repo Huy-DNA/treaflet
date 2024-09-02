@@ -34,25 +34,29 @@
 
   .post__content {
     margin-top: 36px;
-    margin-bottom: 36px;
-  }
+    margin-bottom: 36px; 
+  } 
+</style>
 
-  h2 {
-    color: var(--violet);
-    font-size: var(--font-large);
-  }
+<style>
+  .post__content {
+    h2 {
+      color: var(--violet);
+      font-size: var(--font-large);
+    }
 
-  h3 {
-    color: var(--violet);
-    font-size: var(--font-slightly-large);
-  }
+    h3 {
+      color: var(--violet);
+      font-size: var(--font-slightly-large);
+    }
 
-  h4 {
-    color: var(--violet);
-  }
+    h4 {
+      color: var(--violet);
+    }
 
-  p, h4 {
-    font-size: var(--font-normal);
+    p, h4 {
+      font-size: var(--font-normal);
+    }
   }
 </style>
 
