@@ -6,10 +6,12 @@
     <p class='post__date'>
       {{ createdAt }}
     </p>
-    <main
-      class='post__content'
-      v-html="post.content"
-    />
+    <div>
+      <main
+        class='post__content'
+        v-html="post.content"
+      />
+    </div>
   </article>
 </template>
 
@@ -56,6 +58,11 @@
 
     p, h4 {
       font-size: var(--font-normal);
+    }
+
+    p {
+      line-height: 1.5;
+      text-align: justify;
     }
   }
 </style>

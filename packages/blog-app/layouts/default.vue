@@ -53,6 +53,9 @@
   }
   
   .content {
+    width: min(95%, 1200px);
+    margin-left: auto;
+    margin-right: auto;
     margin-top: 36px;
   }
 
