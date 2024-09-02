@@ -1,8 +1,8 @@
 import { DateTime, Duration } from 'luxon';
 import type { PostCollection } from '@/types';
-const today = DateTime.now();
-const yesterday = DateTime.now().minus(Duration.fromObject({ days: 1 }));
-const lastMonth = DateTime.now().minus(Duration.fromObject({ months: 1 }));
+const today = DateTime.utc(2024, 9, 2, 0, 0, 0); // hydration safe
+const yesterday = today.minus(Duration.fromObject({ days: 1 }));
+const lastMonth = today.minus(Duration.fromObject({ months: 1 }));
 
 /* Mock data for testing - real data is generated during build */
 const posts: PostCollection = [

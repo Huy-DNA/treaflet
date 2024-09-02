@@ -57,19 +57,17 @@
     post: PostMeta;
   }>();
 
-  const createdAt = computed(() => {
+  const createdAt = ref(props.post.createdAt.toFormat('DDD'));
+  onMounted(() => {
     const now = DateTime.now();
     const daysDiff = Math.floor(now.diff(props.post.createdAt, 'days').toObject().days!);
     if (daysDiff == 0) {
-      return 'Today';
+      createdAt.value = 'Today';
+    } else if (daysDiff == 1) {
+      createdAt.value = 'Yesterday';
+    } else if (daysDiff <= 7) {
+      createdAt.value =`${daysDiff} days ago`;
     }
-    if (daysDiff == 1) {
-      return 'Yesterday';
-    }
-    if (daysDiff <= 7) {
-      return `${daysDiff} days ago`;
-    }
-    return props.post.createdAt.toFormat('DDD');
   });
 </script>
 

@@ -64,10 +64,11 @@
   const post: Ref<Post> = ref({
     title: 'This is an example post',
     slug: 'example-post',
-    createdAt: DateTime.now(),
-    modifiedAt: DateTime.now(),
+    createdAt: DateTime.utc(2024, 9, 2),
+    modifiedAt: DateTime.utc(2024, 9, 2),
     summary: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.',
     content: `
+<div>
 <h2>What is Lorem Ipsum?</h2>
 <p><strong>Lorem Ipsum</strong> is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
 </div><div>
@@ -79,19 +80,6 @@
 </div><div>
 <h2>Where can I get some?</h2>
 <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>
-<form method="post" action="/feed/html"><table style="width:100%"><tr><td rowspan="2"><input type="text" name="amount" value="5" size="3" id="amount" /></td><td rowspan="2"><table style="text-align:left"><tr><td style="width:20px"><input type="radio" name="what" value="paras" id="paras" checked="checked" /></td><td><label for="paras">paragraphs</label></td></tr><tr><td style="width:20px"><input type="radio" name="what" value="words" id="words" /></td><td><label for="words">words</label></td></tr><tr><td style="width:20px"><input type="radio" name="what" value="bytes" id="bytes" /></td><td><label for="bytes">bytes</label></td></tr><tr><td style="width:20px"><input type="radio" name="what" value="lists" id="lists" /></td><td><label for="lists">lists</label></td></tr></table></td><td style="width:20px"><input type="checkbox" name="start" id="start" value="yes" checked="checked" /></td><td style="text-align:left"><label for="start">Start with 'Lorem<br />ipsum dolor sit amet...'</label></td></tr><tr><td></td><td style="text-align:left"><input type="submit" name="generate" id="generate" value="Generate Lorem Ipsum" /></td></tr></table></form></div><br /></div>
-<hr /><div class="boxed"><strong>Donate:</strong> If you use this site regularly and would like to help keep the site on the Internet, please consider donating a small sum to help pay for the hosting and bandwidth bill. There is no minimum donation, any sum is appreciated - click <a target="_blank" href="/donate" class="lnk">here</a> to donate using PayPal. Thank you for your support. Donate bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF</div>
-
-<hr /><div class="boxed"><strong>Translations:</strong> Can you help translate this site into a foreign language ? Please email us with details if you can help.</div>
-
-<hr /><div class="boxed">There is a set of mock banners available <a href="/banners" class="lnk">here</a> in three colours and in a range of standard banner sizes:<br /><a href="/banners"><img src="/images/banners/black_234x60.gif" width="234" height="60" alt="Banners" /></a><a href="/banners"><img src="/images/banners/grey_234x60.gif" width="234" height="60" alt="Banners" /></a><a href="/banners"><img src="/images/banners/white_234x60.gif" width="234" height="60" alt="Banners" /></a></div>
-
-<hr /><div class="boxed" id="Packages">
-<a target="_blank" rel="noopener" rel="nofollow" href="https://github.com/traviskaufman/node-lipsum">NodeJS</a>
-<a target="_blank" rel="noopener" rel="nofollow" href="https://code.google.com/p/pypsum/">Python Interface</a>
-<a target="_blank" rel="noopener" rel="nofollow" href="https://gtklipsum.sourceforge.net/">GTK Lipsum</a>
-<a target="_blank" rel="noopener" rel="nofollow" href="https://github.com/gsavage/lorem_ipsum/tree/master">Rails</a>
-<a target="_blank" rel="noopener" rel="nofollow" href="https://github.com/cerkit/LoremIpsum/">.NET</a>
 </div>
     `,
     tags: ['fun-fact'],
@@ -112,19 +100,16 @@
   });
   */
 
-  const createdAt = computed(() => {
+  const createdAt = ref(post.value.createdAt.toFormat('DDD'));
+  onMounted(() => {
     const now = DateTime.now();
     const daysDiff = Math.floor(now.diff(post.value.createdAt, 'days').toObject().days!);
     if (daysDiff == 0) {
-      return 'Today';
+      createdAt.value = 'Today';
+    } else if (daysDiff == 1) {
+      createdAt.value = 'Yesterday';
+    } else if (daysDiff <= 7) {
+      createdAt.value =`${daysDiff} days ago`;
     }
-    if (daysDiff == 1) {
-      return 'Yesterday';
-    }
-    if (daysDiff <= 7) {
-      return `${daysDiff} days ago`;
-    }
-    return post.value.createdAt.toFormat('DDD');
   });
-
 </script>
