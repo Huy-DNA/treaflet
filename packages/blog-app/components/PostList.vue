@@ -23,13 +23,7 @@
 
   const scrollEndEventListener = ref<null | ReturnType<typeof addEventListener>>(null);
   onMounted(() => {
-    let lastScrollY = 0;
     scrollEndEventListener.value = document.addEventListener('scroll', () => {
-      if (lastScrollY > window.scrollY) {
-        lastScrollY = window.scrollY;
-        return;
-      }
-      lastScrollY = window.scrollY;
       if ((window.innerHeight + Math.round(window.scrollY)) >= document.body.offsetHeight) {
         loadPosts();
       }
