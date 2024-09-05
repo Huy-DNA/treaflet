@@ -3,6 +3,7 @@ import path from 'path';
 import slugify from 'slugify';
 import { DateTime } from 'luxon';
 import url from 'url';
+import { marked } from 'marked';
 
 const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
 
@@ -17,7 +18,11 @@ fs.readdirSync(postsDir).forEach((title) => {
   const postMeta = JSON.parse(fs.readFileSync(postMetaPath, { encoding: 'utf8' }));
 
   const postContentPath = path.resolve(postPath, 'content.md');
-  const postContent = fs.readFileSync(postContentPath, { encoding: 'utf8' });
+  const postContent = marked.parse(fs.readFileSync(postContentPath, { encoding: 'utf8' }))
+    .replace(/<code class="language-(.*)">/g, `<label>$1</label>$&`)
+    .replace(/\`/g, `\\\``)
+    .replace(/\\/g, `\\\\`)
+    .replace(/\$/g, `\\\$`);
 
   posts.push({
     title: postMeta.title,
