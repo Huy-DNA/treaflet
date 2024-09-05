@@ -5,9 +5,9 @@
   "scripts": {},
   "author": "Huy-DNA",
   "license": "UNLICENSED",
+  "type": "module",
   "dependencies": {
     "dompurify": "^3.1.6",
-    "fs-extra": "^11.2.0",
     "jsdom": "^21.1.2",
     "marked": "^4.3.0",
     "slugify": "^1.6.6"

@@ -8,7 +8,6 @@ export interface Post {
   title: string;
   slug: string;
   createdAt: DateTime;
-  modifiedAt: DateTime;
   summary?: string;
   content: string;
   tags: Tag[];
