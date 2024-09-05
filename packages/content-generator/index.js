@@ -5,8 +5,21 @@ import { DateTime } from 'luxon';
 import url from 'url';
 import { marked } from 'marked';
 
-const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
+// basic constants
 
+const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
+const outDir = path.resolve(rootDir, 'dist/');
+const templatesDir = path.resolve(rootDir, 'templates/'); 
+
+// reset
+try {
+  fs.rmdirSync(outDir);
+} catch {}
+try {
+  fs.mkdirSync(outDir);
+} catch {}
+
+// read from ./posts/
 const postsDir = path.resolve(rootDir, 'posts/');
 
 const posts = [];
@@ -34,3 +47,12 @@ fs.readdirSync(postsDir).forEach((title) => {
     thumbnailUrl: postMeta.thumbnailUrl || '',
   });
 });
+
+// generate posts.ts
+const postsTemplateDir = path.resolve(templatesDir, 'posts.ts');
+const postsTemplate = fs.readFileSync(postsTemplateDir, { encoding: 'utf8' });
+const outPostsDir = path.resolve(outDir, 'posts.ts');
+
+fs.writeFileSync(outPostsDir, postsTemplate.replace("{{ posts }}", JSON.stringify(posts.map((post) => ({ ...post, content: undefined }), 2))));
+
+// generate post.vue
