@@ -6,7 +6,6 @@ import url from 'url';
 import { marked } from 'marked';
 
 // basic constants
-
 const rootDir = path.dirname(url.fileURLToPath(import.meta.url));
 const outDir = path.resolve(rootDir, 'dist/');
 const templatesDir = path.resolve(rootDir, 'templates/'); 
@@ -40,7 +39,7 @@ fs.readdirSync(postsDir).forEach((title) => {
   posts.push({
     title: postMeta.title,
     slug: slugify(postMeta.title),
-    createdAt: DateTime.fromFormat(postMeta.createdAt, 'D'),
+    createdAt: DateTime.fromFormat(postMeta.createdAt, 'D').toISO(),
     summary: postMeta.summary,
     content: postContent,
     tags: postMeta.tags.map((name) => ({ name })),

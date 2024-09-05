@@ -57,10 +57,10 @@
     post: PostMeta;
   }>();
 
-  const createdAt = ref(props.post.createdAt.toFormat('DDD'));
+  const createdAt = ref(DateTime.fromISO(props.post.createdAt).toFormat('DDD'));
   onMounted(() => {
     const now = DateTime.now();
-    const daysDiff = Math.floor(now.diff(props.post.createdAt, 'days').toObject().days!);
+    const daysDiff = Math.floor(now.diff(DateTime.fromISO(props.post.createdAt), 'days').toObject().days!);
     if (daysDiff == 0) {
       createdAt.value = 'Today';
     } else if (daysDiff == 1) {
