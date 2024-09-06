@@ -9,6 +9,7 @@
   "license": "UNLICENSED",
   "type": "module",
   "dependencies": {
+    "luxon": "^3.5.0",
     "marked": "^4.3.0",
     "slugify": "^1.6.6"
   }

@@ -60,6 +60,9 @@ importers:
 
   packages/content-generator:
     dependencies:
+      luxon:
+        specifier: ^3.5.0
+        version: 3.5.0
       marked:
         specifier: ^4.3.0
         version: 4.3.0
