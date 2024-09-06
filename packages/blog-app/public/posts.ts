@@ -1,51 +1,6 @@
 import { DateTime, Duration } from 'luxon';
 import type { PostCollection } from '@/types';
-const today = DateTime.utc(2024, 9, 2, 0, 0, 0);
-const yesterday = today.minus(Duration.fromObject({ days: 1 }));
-const lastMonth = today.minus(Duration.fromObject({ months: 1 }));
 
-/* Mock data for testing - real data is generated during build */
-const posts: PostCollection = [
-  {
-    title: 'A very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very very long title',
-    slug: 'a-very-long-post',
-    createdAt: today.toISO(),
-    summary: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32',
-    tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/logos.jpeg',
-  },
-  {
-    title: 'Today post',
-    slug: 'today-post',
-    createdAt: today.toISO(),
-    summary: 'A post written at today',
-    tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/logos.jpeg',
-  },
-  {
-    title: 'Yesterday post',
-    slug: 'yesterday-post',
-    createdAt: yesterday.toISO(),
-    summary: 'A post written at yesterday',
-    tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/logos.jpeg',
-  },
-  {
-    title: 'Last month post',
-    slug: 'last-month-post',
-    createdAt: lastMonth.toISO(),
-    summary: 'A post written in last month',
-    tags: [ { name: 'C++' }, { name: 'glibc' } ],
-    thumbnailUrl: '/logos.jpeg',
-  },
-  {
-    title: 'Today post 2 with no tags',
-    slug: 'today-post-2',
-    createdAt: lastMonth.toISO(),
-    summary: 'A post written in today',
-    tags: [],
-    thumbnailUrl: '/logos.jpeg',
-  },
-]
+const posts: PostCollection = [{"title":"printf - A speculative implementation","slug":"printf-A-speculative-implementation","createdAt":"2023-01-04T00:00:00.000+07:00","summary":"This post mainly concerns itself with the problem of functions accepting a variable number of parameters. There's a catch though!","tags":[{"name":"cpp"},{"name":"mips"}],"thumbnailUrl":""},{"title":"printf - A speculative implementation (part 2)","slug":"printf-A-speculative-implementation-(part-2)","createdAt":"2023-03-04T00:00:00.000+07:00","summary":"In this post, I implement the non-variadic version of `printf` with a pre-preprocessor.","tags":[{"name":"cpp"}],"thumbnailUrl":""},{"title":"Trait implementation in Rust & how inheritance differs from interfaces","slug":"Trait-implementation-in-Rust-and-how-inheritance-differs-from-interfaces","createdAt":"2024-02-09T00:00:00.000+07:00","summary":"This post discusses about how inheritance and interface are two entirely different mechanism, how Trait in Rust is an implementation of the interface abstraction & how Trait object is implemented","tags":[{"name":"rust"},{"name":"trait"},{"name":"implementation"},{"name":"interface"},{"name":"inheritance"}],"thumbnailUrl":""}];
 
 export default posts;
