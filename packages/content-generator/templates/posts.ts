@@ -2,7 +2,7 @@ import { DateTime, Duration } from 'luxon';
 import type { PostCollection } from '@/types';
 
 const posts: PostCollection = [
-  {{ posts }}
+  {{{ posts }}}
 ];
 
 export default posts;

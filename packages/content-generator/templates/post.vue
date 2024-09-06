@@ -81,13 +81,13 @@
   import type { Post } from '@/types';
 
   const post: Ref<Post> = ref({
-    title: {{ title }},
-    slug: {{ slug }},
-    createdAt: new DateTime({{ createdAt }}),
-    summary: {{ summary }},
-    content: {{ content }},
-    tags: {{ tags }},
-    thumbnailUrl: {{ thumbnailUrl }},
+    title: {{{ title }}},
+    slug: {{{ slug }}},
+    createdAt: DateTime.fromISO({{{ createdAt }}}),
+    summary: {{{ summary }}},
+    content: {{{ content }}},
+    tags: {{{ tags }}},
+    thumbnailUrl: {{{ thumbnailUrl }}},
   });
 
   const createdAt = ref(post.value.createdAt.toFormat('DDD'));
