@@ -29,7 +29,7 @@
       }
     });
   });
-  onUnmounted(() => document.removeEventListener('scroll', scrollEndEventListener.value));
+  onUnmounted(() => document.removeEventListener('scroll', scrollEndEventListener.value as any));
 
   const isLoading = ref(false);
   function loadPosts () {
