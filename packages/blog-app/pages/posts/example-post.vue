@@ -78,7 +78,7 @@
 
 <script setup lang="ts">
   import { DateTime } from 'luxon';
-  import type { Post } from '@/types';
+  import type { Post } from 'utils/types';
 
   /* MOCK-START */
   const post: Ref<Post> = ref({

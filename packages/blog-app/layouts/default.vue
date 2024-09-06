@@ -64,5 +64,5 @@
 </style>
 
 <script setup lang="ts">
-  import { fontSize } from '@/style-guide';
+  import { fontSize } from 'utils/style-guide';
 </script>

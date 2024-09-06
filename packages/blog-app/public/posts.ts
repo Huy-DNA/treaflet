@@ -1,5 +1,5 @@
 import { DateTime, Duration } from 'luxon';
-import type { PostCollection } from '@/types';
+import type { PostCollection } from 'utils/types';
 
 const posts: PostCollection = [{"title":"printf - A speculative implementation","slug":"printf-A-speculative-implementation","createdAt":"2023-01-04T00:00:00.000+07:00","summary":"This post mainly concerns itself with the problem of functions accepting a variable number of parameters. There's a catch though!","tags":[{"name":"cpp"},{"name":"mips"}],"thumbnailUrl":""},{"title":"printf - A speculative implementation (part 2)","slug":"printf-A-speculative-implementation-(part-2)","createdAt":"2023-03-04T00:00:00.000+07:00","summary":"In this post, I implement the non-variadic version of `printf` with a pre-preprocessor.","tags":[{"name":"cpp"}],"thumbnailUrl":""},{"title":"Trait implementation in Rust & how inheritance differs from interfaces","slug":"Trait-implementation-in-Rust-and-how-inheritance-differs-from-interfaces","createdAt":"2024-02-09T00:00:00.000+07:00","summary":"This post discusses about how inheritance and interface are two entirely different mechanism, how Trait in Rust is an implementation of the interface abstraction & how Trait object is implemented","tags":[{"name":"rust"},{"name":"trait"},{"name":"implementation"},{"name":"interface"},{"name":"inheritance"}],"thumbnailUrl":""}];
 

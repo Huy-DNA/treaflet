@@ -15,6 +15,7 @@ export default defineNuxtConfig({
 
   alias: {
     '@': '~',
+    'utils': '~/utils',
     'assets': '~/assets',
     'public': '~/public',
     'plugins': '~/plugins',

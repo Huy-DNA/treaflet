@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-  import type { PostCollection } from '@/types';
+  import type { PostCollection } from 'utils/types';
   const props = defineProps<{
     posts: PostCollection;
   }>();

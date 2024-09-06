@@ -51,7 +51,7 @@
 
 <script setup lang="ts">
   import { DateTime } from 'luxon';
-  import type { PostMeta } from '@/types';
+  import type { PostMeta } from 'utils/types';
   
   const props = defineProps<{
     post: PostMeta;
