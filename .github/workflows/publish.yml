@@ -1,0 +1,32 @@
+name: publish
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+      - name: Install pnpm
+        run: npm install -g pnpm@^9.9.0
+      - name: Install packages
+        run: |
+          pnpm install --frozen-lockfile
+      - name: Build posts
+        run: |  
+          cd packages/content-generator
+          pnpm build:posts
+      - name: Copy posts to blog app
+        run: | 
+          cp packages/content-generator/dist/posts.ts packages/blog-app/public/posts.ts
+          cp packages/content-generator/dist/posts/* packages/blog-app/pages/posts/
+      - name: Build blog
+        run: pnpm generate
+      
