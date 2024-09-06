@@ -28,5 +28,7 @@ jobs:
           cp packages/content-generator/dist/posts.ts packages/blog-app/public/posts.ts
           cp packages/content-generator/dist/posts/* packages/blog-app/pages/posts/
       - name: Build blog
-        run: pnpm generate
+        run: |
+          cd packages/blog-app
+          pnpm generate
       
