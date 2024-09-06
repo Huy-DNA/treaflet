@@ -83,17 +83,17 @@
   const post: Ref<Post> = ref({
     title: {{{ title }}},
     slug: {{{ slug }}},
-    createdAt: DateTime.fromISO({{{ createdAt }}}),
+    createdAt: {{{ createdAt }}},
     summary: {{{ summary }}},
     content: {{{ content }}},
     tags: {{{ tags }}},
     thumbnailUrl: {{{ thumbnailUrl }}},
   });
 
-  const createdAt = ref(post.value.createdAt.toFormat('DDD'));
+  const createdAt = ref(DateTime.fromISO(post.value.createdAt).toFormat('DDD'));
   onMounted(() => {
     const now = DateTime.now();
-    const daysDiff = Math.floor(now.diff(post.value.createdAt, 'days').toObject().days!);
+    const daysDiff = Math.floor(now.diff(DateTime.fromISO(post.value.createdAt), 'days').toObject().days!);
     if (daysDiff == 0) {
       createdAt.value = 'Today';
     } else if (daysDiff == 1) {
