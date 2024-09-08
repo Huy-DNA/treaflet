@@ -28,7 +28,14 @@ export default defineNuxtConfig({
       },
       title: 'Treaflet',
       script: [
-        { src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js', async: true, }
+        { src: 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js', async: true, },
+        {
+          src: "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js", async: true,
+        },
+        { children: "hljs.highlightAll();", defer: true },
+      ],
+      link: [
+        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css', },
       ],
       meta: [
         { 
