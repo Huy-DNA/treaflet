@@ -53,9 +53,11 @@
   import { DateTime } from 'luxon';
   import type { PostMeta } from 'utils/types';
   
-  const props = defineProps<{
-    post: PostMeta;
-  }>();
+  const props = defineProps({
+    post: {
+      type: Object as PropType<PostMeta>,
+    }
+  });
 
   const createdAt = ref(DateTime.fromISO(props.post.createdAt).toFormat('DDD'));
   onMounted(() => {

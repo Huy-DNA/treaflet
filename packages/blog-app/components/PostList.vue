@@ -14,9 +14,11 @@
 
 <script setup lang="ts">
   import type { PostCollection } from 'utils/types';
-  const props = defineProps<{
-    posts: PostCollection;
-  }>();
+  const props = defineProps({
+    posts: {
+       type: Array as PropType<PostCollection>,
+    },
+  });
 
   const POSTS_PER_SCROLL = 4;
   const postLength = ref(POSTS_PER_SCROLL);
