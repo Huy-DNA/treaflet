@@ -34,7 +34,7 @@ fs.readdirSync(postsDir).forEach((title) => {
 
   posts.push({
     title: postMeta.title,
-    slug: slugify(postMeta.title),
+    slug: slugify(postMeta.title, { lower: true, remove: /[^a-zA-Z_0-9 ]/ }),
     createdAt: DateTime.fromFormat(postMeta.createdAt, 'D').toISO(),
     summary: postMeta.summary,
     content: postContent,
