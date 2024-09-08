@@ -31,4 +31,12 @@ jobs:
         run: |
           cd packages/blog-app
           pnpm generate
-      
+      - name: Install Netlify
+        run: npm install netlify-cli@17.10.1 -g
+      - name: Deploy to Netlify
+        id: netlify_deploy
+        run: |
+          netlify deploy --filter @treaflet/blog-app \
+            --dir packages/blog-app/.output/public \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --auth ${{ secrets.NETLIFY_PAT }}
