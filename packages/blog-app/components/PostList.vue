@@ -17,6 +17,7 @@
   const props = defineProps({
     posts: {
        type: Array as PropType<PostCollection>,
+       required: true,
     },
   });
 

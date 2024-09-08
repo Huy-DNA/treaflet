@@ -56,6 +56,7 @@
   const props = defineProps({
     post: {
       type: Object as PropType<PostMeta>,
+      required: true,
     }
   });
 

@@ -3,7 +3,7 @@
     <img
       src='assets/images/brand-logo.png'
       alt='treaflet brand logo'
-      :width='imageSize(width)'
+      :width='imageSize(props.width)'
     />
   </div>
 </template>
@@ -13,9 +13,8 @@
 
   const props = defineProps({
     width: {
-      type: Object as PropType<ImageSize>,
+      type: String as PropType<ImageSize>,
+      default: 'normal',
     },
   });
-
-  const width = props.width || 'normal';
 </script>
