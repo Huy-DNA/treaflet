@@ -30,7 +30,6 @@ fs.readdirSync(postsDir).forEach((title) => {
     .replace(/<code class="language-(.*)">/g, `<label>$1</label>$&`)
     .replace(/\`/g, `\\\``)
     .replace(/\\/g, `\\\\`)
-    .replace(/\$/g, `\\\$`);
 
   posts.push({
     title: postMeta.title,

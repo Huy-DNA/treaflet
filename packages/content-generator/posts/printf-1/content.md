@@ -94,13 +94,7 @@ Of course, with this, some additional statements have to be prepended to write t
 
 The only issue we have to address now is how to locate the parameters in the buffer.
 
-As stated, because of the concept of "data type", this isn't immediately solved by passing a length parameter. The buffer passed to the function is no more than a raw array of bytes! We need information about the type of each parameter _at runtime_. Many higher-level language does comprehensively support runtime type information, with a whole lot more overhead. With C++, this is limited. So I'll let you think a little bit.
-
-...
-
-...
-
-...
+As stated, because of the concept of "data type", this isn't immediately solved by passing a length parameter. The buffer passed to the function is no more than a raw array of bytes! We need information about the type of each parameter _at runtime_. Many higher-level language does comprehensively support runtime type information, with a whole lot more overhead. With C++, this is limited. So I'll let you think a little bit...
 
 Have you come up with a plan? It turns out to be pretty simple. Just look at the first parameter -- the `format` string. It already encodes the type information for us, namely `%s`, `%d`, `%p`... Each type information comes with its size-in-byte information. These are sufficient to locate the parameters in the buffer in an almost straightforward way. However, be aware of the problem of **data alignment**.
 
