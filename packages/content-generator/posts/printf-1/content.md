@@ -326,6 +326,6 @@ I want to prove in this section that the schema in the above diagram can really 
 
 As the post is already long now, I'll leave this to another post.
 
-_Link to the next post: [part 2](/posts/printf-a-speculative-implementation-(part-2))_
+_Link to the next post: [part 2](/posts/printf-a-speculative-implementation-part-2)_
 
 Farewell!
