@@ -77,6 +77,7 @@
 </style>
 
 <script setup lang="ts">
+  import hljs from 'highlight.js';
   import { DateTime } from 'luxon';
   import type { Post } from 'utils/types';
 
@@ -130,4 +131,6 @@
       createdAt.value =`${daysDiff} days ago`;
     }
   });
+
+  onMounted(() => document.querySelectorAll('pre code').forEach((el) => hljs.highlightElement(el as HTMLElement)));
 </script>
