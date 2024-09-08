@@ -2,3 +2,5 @@ node_modules/
 .nuxt/
 dist
 .output/
+# Local Netlify folder
+.netlify
