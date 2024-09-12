@@ -5,9 +5,6 @@
   "thumbnailUrl": "/thumbnails/rust.jpeg",
   "tags": [
     "rust",
-    "trait",
-    "implementation",
-    "interface",
-    "inheritance"
+    "trait"
   ]
 }
