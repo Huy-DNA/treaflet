@@ -109,12 +109,13 @@
     text-decoration: none;
     display: -webkit-box;
     -webkit-line-clamp: 1;
+    line-clamp: 1;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--font-slightly-large);
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
   }
   .card__content__title:hover {
     text-decoration: underline;
@@ -142,6 +143,7 @@
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 3;
+    line-clamp: 3;
     overflow: hidden;
     text-overflow: ellipsis;
     font-size: var(--font-normal)
