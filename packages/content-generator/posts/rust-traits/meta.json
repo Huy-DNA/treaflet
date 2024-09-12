@@ -2,6 +2,7 @@
   "title": "Trait implementation in Rust & how inheritance differs from interfaces",
   "summary": "This post discusses about how inheritance and interface are two entirely different mechanism, how Trait in Rust is an implementation of the interface abstraction & how Trait object is implemented",
   "createdAt": "2/9/2024",
+  "thumbnailUrl": "/thumbnails/rust.jpeg",
   "tags": [
     "rust",
     "trait",

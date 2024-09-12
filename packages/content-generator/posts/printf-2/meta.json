@@ -2,6 +2,7 @@
   "title": "printf - A speculative implementation (part 2)",
   "summary": "In this post, I implement the non-variadic version of `printf` with a pre-preprocessor.",
   "createdAt": "3/4/2023",
+  "thumbnailUrl": "/thumbnails/cpp.jpeg",
   "tags": [
     "cpp"
   ]
