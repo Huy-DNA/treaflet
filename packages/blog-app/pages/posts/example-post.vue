@@ -73,6 +73,16 @@
       line-height: 1.5;
       text-align: justify;
     }
+
+    img {
+      max-width: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+      img {
+        overflow: auto;
+      }
+    } 
   }
 </style>
 
