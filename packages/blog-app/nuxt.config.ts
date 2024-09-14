@@ -46,6 +46,10 @@ export default defineNuxtConfig({
           name: 'description',
           content: 'A personal blog exploring concepts of various computer science topics',
         },
+        {
+          name: 'google-site-verification',
+          content: 'B1RTC_xv7CpjIaku7zM0qNr-2pwwVTqjfTrAqA6ePT0',
+        },
       ],    
     }, 
   },
