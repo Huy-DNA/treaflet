@@ -27,9 +27,9 @@ fs.readdirSync(postsDir).forEach((title) => {
 
   const postContentPath = path.resolve(postPath, 'content.md');
   const postContent = marked.parse(fs.readFileSync(postContentPath, { encoding: 'utf8' }))
-    .replace(/<code class="language-(.*)">/g, `<label>$1</label>$&`)
-    .replace(/\`/g, `\\\``)
-    .replace(/\\/g, `\\\\`)
+    .replaceAll(/<code class="language-(.*)">/g, `<label>$1</label>$&`)
+    .replaceAll(/\`/g, `\\\``)
+    .replaceAll(/\\/g, `\\\\`)
 
   posts.push({
     title: postMeta.title,
@@ -58,13 +58,13 @@ posts.forEach((post) => {
   const outPostDir = path.resolve(outDir, 'posts/', `${slug}.vue`);
 
   const postVueContent = postTemplate
-    .replace('{{{ title }}}', JSON.stringify(post.title))
-    .replace('{{{ slug }}}', JSON.stringify(post.slug))
-    .replace('{{{ createdAt }}}', JSON.stringify(post.createdAt))
-    .replace('{{{ summary }}}', JSON.stringify(post.summary))
-    .replace('{{{ content }}}', JSON.stringify(post.content))
-    .replace('{{{ tags }}}', JSON.stringify(post.tags))
-    .replace('{{{ thumbnailUrl }}}', JSON.stringify(post.thumbnailUrl));
+    .replaceAll('{{{ title }}}', JSON.stringify(post.title))
+    .replaceAll('{{{ slug }}}', JSON.stringify(post.slug))
+    .replaceAll('{{{ createdAt }}}', JSON.stringify(post.createdAt))
+    .replaceAll('{{{ summary }}}', JSON.stringify(post.summary))
+    .replaceAll('{{{ content }}}', JSON.stringify(post.content))
+    .replaceAll('{{{ tags }}}', JSON.stringify(post.tags))
+    .replaceAll('{{{ thumbnailUrl }}}', JSON.stringify(post.thumbnailUrl));
 
   fs.writeFileSync(outPostDir, postVueContent);
 });
