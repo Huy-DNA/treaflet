@@ -75,17 +75,9 @@
     }
 
     img {
-      display: block;
       max-width: 100%;
     }
 
-    @media only screen and (max-width: 600px) {
-      img {
-        display: block;
-        width: 100%;
-        overflow: auto;
-      }
-    } 
   }
 </style>
 
