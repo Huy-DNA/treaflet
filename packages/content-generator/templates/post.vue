@@ -81,6 +81,13 @@
   import { DateTime } from 'luxon';
   import type { Post } from 'utils/types';
 
+  useHead({
+    title: {{{ title }}},
+    meta: [
+      { name: 'description', content: {{{ summary }}} },
+    ],
+  });
+
   const post: Ref<Post> = ref({
     title: {{{ title }}},
     slug: {{{ slug }}},

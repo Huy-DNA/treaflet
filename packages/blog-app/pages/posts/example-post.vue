@@ -94,7 +94,13 @@
   import { DateTime } from 'luxon';
   import type { Post } from 'utils/types';
 
-  /* MOCK-START */
+  useHead({
+    title: 'Example post',
+    meta: [
+      { name: 'description', content: 'This is an example post' },
+    ],
+  });
+
   const post: Ref<Post> = ref({
     title: 'This is an example post',
     slug: 'example-post',
@@ -118,19 +124,6 @@
     tags: [{ name: 'fun-fact' }],
     thumbnailUrl: 'https://compote.slate.com/images/5294e6d0-53ed-4a4a-a350-7eaeab72ac93.jpeg?crop=1560%2C1040%2Cx0%2Cy0&width=840',
   });
-  /* MOCK-END */
-
-  /* TEMPLATE-START
-  const post: Ref<Post> = ref({
-    title: {{ title }},
-    slug: {{ slug }},
-    createdAt: new DateTime({{ createdAt }}),
-    summary: {{ summary }},
-    content: {{ content }},
-    tags: {{ tags }},
-    thumbnailUrl: {{ thumbnailUrl }},
-  });
-  */
 
   const createdAt = ref(DateTime.fromISO(post.value.createdAt).toFormat('DDD'));
   onMounted(() => {
