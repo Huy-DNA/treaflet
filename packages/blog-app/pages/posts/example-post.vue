@@ -74,10 +74,6 @@
       text-align: justify;
     }
 
-    img {
-      max-width: 100%;
-    }
-
   }
 </style>
 
