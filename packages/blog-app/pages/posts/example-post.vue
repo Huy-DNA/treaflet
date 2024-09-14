@@ -94,11 +94,14 @@
   import { DateTime } from 'luxon';
   import type { Post } from 'utils/types';
 
-  useHead({
+  useSeoMeta({
     title: 'Example post',
-    meta: [
-      { name: 'description', content: 'This is an example post' },
-    ],
+    ogTitle: 'Example post',
+    ogSiteName: 'Treaflet',
+    description: 'This is an example post',
+    ogDescription: 'This is an example post',
+    ogImage: '/public/logos.jpeg',
+    twitterCard: 'summary_large_image',
   });
 
   const post: Ref<Post> = ref({

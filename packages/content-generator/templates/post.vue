@@ -80,12 +80,14 @@
   import hljs from 'highlight.js';
   import { DateTime } from 'luxon';
   import type { Post } from 'utils/types';
-
-  useHead({
+  useSeoMeta({
     title: {{{ title }}},
-    meta: [
-      { name: 'description', content: {{{ summary }}} },
-    ],
+    ogTitle: {{{ title }}},
+    ogSiteName: 'Treaflet',
+    description: {{{ summary }}},
+    ogDescription: {{{ summary }}},
+    ogImage: {{{ thumbnailUrl }}},
+    twitterCard: 'summary_large_image',
   });
 
   const post: Ref<Post> = ref({
