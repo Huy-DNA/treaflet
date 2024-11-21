@@ -6,11 +6,6 @@
     <p class="post__date">
       {{ createdAt }}
     </p>
-    <img
-      v-if="post.thumbnailUrl"
-      class="post__thumbnail"
-      :src="post.thumbnailUrl"
-    >
     <div>
       <main
         class="post__content"
@@ -37,10 +32,6 @@
     text-align: center;
     color: var(--slightly-dark-neutral);
     margin-top: 0;
-  }
-
-  .post__thumbnail {
-    width: 100%;
   }
 
   .post__content {
@@ -113,7 +104,6 @@
 </div>
     `,
     tags: [{ name: 'fun-fact' }],
-    thumbnailUrl: 'https://compote.slate.com/images/5294e6d0-53ed-4a4a-a350-7eaeab72ac93.jpeg?crop=1560%2C1040%2Cx0%2Cy0&width=840',
   });
 
   const createdAt = ref(DateTime.fromISO(post.value.createdAt).toFormat('DDD'));

@@ -10,7 +10,6 @@ export interface Post {
   summary?: string;
   content: string;
   tags: Tag[];
-  thumbnailUrl: string;
 }
 
 export interface Tag {

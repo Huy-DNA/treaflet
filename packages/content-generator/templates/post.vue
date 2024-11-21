@@ -6,11 +6,6 @@
     <p class="post__date">
       {{ createdAt }}
     </p>
-    <img
-      v-if="post.thumbnailUrl"
-      class="post__thumbnail"
-      :src="post.thumbnailUrl"
-    >
     <div>
       <main
         class="post__content"
@@ -37,10 +32,6 @@
     text-align: center;
     color: var(--slightly-dark-neutral);
     margin-top: 0;
-  }
-
-  .post__thumbnail {
-    width: 100%;
   }
 
   .post__content {
@@ -86,7 +77,7 @@
     ogSiteName: 'Treaflet',
     description: {{{ summary }}},
     ogDescription: {{{ summary }}},
-    ogImage: {{{ thumbnailUrl }}},
+    ogImage: '/public/logos.jpeg',
     twitterCard: 'summary_large_image',
   });
 
@@ -97,7 +88,6 @@
     summary: {{{ summary }}},
     content: {{{ content }}},
     tags: {{{ tags }}},
-    thumbnailUrl: {{{ thumbnailUrl }}},
   });
 
   const createdAt = ref(DateTime.fromISO(post.value.createdAt).toFormat('DDD'));

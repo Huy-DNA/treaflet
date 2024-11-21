@@ -38,7 +38,6 @@ fs.readdirSync(postsDir).forEach((title) => {
     summary: postMeta.summary,
     content: postContent,
     tags: postMeta.tags.map((name) => ({ name })),
-    thumbnailUrl: postMeta.thumbnailUrl || '',
   });
 });
 
@@ -64,7 +63,6 @@ posts.forEach((post) => {
     .replaceAll('{{{ summary }}}', JSON.stringify(post.summary))
     .replaceAll('{{{ content }}}', JSON.stringify(post.content))
     .replaceAll('{{{ tags }}}', JSON.stringify(post.tags))
-    .replaceAll('{{{ thumbnailUrl }}}', JSON.stringify(post.thumbnailUrl));
 
   fs.writeFileSync(outPostDir, postVueContent);
 });

@@ -2,7 +2,6 @@
   "title": "printf - A speculative implementation",
   "summary": "This post mainly concerns itself with the problem of functions accepting a variable number of parameters. There's a catch though!",
   "createdAt": "1/4/2023",
-  "thumbnailUrl": "/thumbnails/cpp.jpeg",
   "tags": [
     "cpp",
     "mips"
