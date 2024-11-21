@@ -10,16 +10,16 @@
           to="/"
           role="button"
         >
-          <BrandLogo width="large" />
+          <BrandLogo width="huge" />
           Treaflet
         </NuxtLink>
       </nav>
-      <section
+      <main
         class="content"
         role="article"
       >
         <slot />
-      </section>
+      </main>
       <footer class="footer">
       </footer>
     </div>
@@ -29,36 +29,33 @@
 <style scoped>
   .wrapper {
     min-height: 100vh; 
+    padding-bottom: 24px;
+    background-color: var(--gray);    
   }
 
   .wrapper__content {
     min-height: 100vh;
+    margin-right: auto;
+    margin-left: auto;
+    width: 800px;
   }
 
   .header {
     gap: 24px;
     padding-top: 24px;
+    padding-bottom: 24px;
     padding-left: 36px;
+    background: var(--very-light-neutral);
   }
   .header__brand-name {
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: center;
     font-weight: bold;
     text-decoration: none;
     text-align: left;
     gap: 10px;
-    font-size: var(--font-slightly-large);
+    font-size: var(--font-huge);
     color: var(--dark-neutral);
-  }
-  
-  .content {
-    width: min(95%, 1200px);
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 36px;
-  }
-
-  .footer {
   }
 </style>

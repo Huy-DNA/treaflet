@@ -22,7 +22,6 @@
 
   const searchText = ref('');
 
-
   function onInput () {
     emits('search', searchText.value);
   }
@@ -33,7 +32,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 72px;
   }
 
   .search-box {
@@ -47,9 +45,11 @@
   }
 
   .search-box__box {
-    border-radius: 16px;
     width: 50vw;
     border: 1px var(--slightly-dark-neutral) solid;
+    border-top: none;
+    border-right: none;
+    border-left: none;
     padding: 8px;
     padding-left: 36px;
     padding-right: 16px;

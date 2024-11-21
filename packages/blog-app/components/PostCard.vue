@@ -1,28 +1,19 @@
 <template>
   <div class="card" role="button">
     <div class="card__content">
-      <h2>
-        <NuxtLink class="card__content__title" :to="`/posts/${props.post.slug}`">
-          {{ props.post.title }}
-        </NuxtLink>
+      <h2 class="card__content__title">
+        {{ props.post.title }}
       </h2>
       <p class="card__content__date">
         {{ createdAt }}
       </p>
-      <div class="card__taglist">
-        Topics:
-        <span v-if="props.post.tags.length === 0" :style="{ color: 'var(--slightly-dark-neutral)' }">
-          Not found
-        </span>
-        <span v-for="(tag, idx) in props.post.tags" :key="tag.name">
-          <NuxtLink class="card__taglist__tag">
-            {{ tag.name }} {{ idx !== props.post.tags.length - 1 ? ',' : '' }}
-          </NuxtLink>
-        </span>
-      </div>
       <p class="card__content__summary">
         {{ props.post.summary }}
       </p>
+      <NuxtLink :to="`/posts/${props.post.slug}`">
+        See more
+      </NuxtLink>
+
     </div>
   </div>
 </template>
@@ -54,20 +45,9 @@ onMounted(() => {
 
 <style scoped>
 .card {
-  display: flex;
-  justify-content: center;
-  height: 220px;
-  width: min(95%, 1200px);
-  margin: auto;
-  margin-top: 45px;
-  margin-bottom: 45px;
-  gap: max(2vw, 36px);
-}
-
-.card__content {
-  flex: 3;
-  display: flex;
-  flex-flow: column nowrap;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-bottom: 48px;
 }
 
 .card__content__title {
@@ -81,30 +61,14 @@ onMounted(() => {
   text-overflow: ellipsis;
   font-size: var(--font-slightly-large);
   margin-top: 0;
-  margin-bottom: 4px;
-}
-
-.card__content__title:hover {
-  text-decoration: underline;
-  cursor: pointer;
+  margin-bottom: 6px;
 }
 
 .card__content__date {
-  font-size: var(--font-small);
+  font-size: var(--font-slightly-small);
   color: var(--slightly-dark-neutral);
   margin-top: 0;
-  margin-bottom: 8px;
-}
-
-.card__taglist {
-  display: flex;
-  flex-flow: row nowrap;
-  gap: 6px;
-}
-
-.card__taglist__tag:hover {
-  text-decoration: underline;
-  cursor: pointer;
+  margin-bottom: 16px;
 }
 
 .card__content__summary {
@@ -114,6 +78,6 @@ onMounted(() => {
   line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var(--font-normal)
+  font-size: var(--font-normal);
 }
 </style>
