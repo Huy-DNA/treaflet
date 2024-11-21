@@ -1,3 +1,5 @@
+<section>
+
 ## Introduction
 Yesterday (31/03/2023), my professor asked my class a simple question: "How can `printf` accept a variable number of parameters?". Well, the first thing that came to my mind was a concept called _variadic function_ in C. But even then, how does variadic and the magical ellipsis (`...`) really work? Till that point, I had not really thought much about those three magical dots and it was pretty much a black box to me.
 
@@ -6,6 +8,9 @@ As far as I know, in assembly languages, passing a variable number of parameters
 At the time I write this post, I still haven't looked into how variadic functions & `printf` really work in C/C++, so this is just my speculation! (Hence the name of the post)
 
 I want to strongly emphasize that: **This is wholy my speculation, to show that's there's no magic in this, not to explain how the real `printf` works**.
+
+</section>
+<section>
 
 ## Goals
 
@@ -16,6 +21,9 @@ I want to strongly emphasize that: **This is wholy my speculation, to show that'
   What do I mean by this? 
   
   In C++, there are some powerful compile-time features such as template & parameter pack which strongly resemble variadic functions.  **However**, implementations using those features do not accept a variable number of parameters _at runtime_, they just create that illusion. It's outside of the scope of this post to fully explain this, but the take-away note is that when you compile those implementations, the compiled code can only accept a finite number of parameters!
+
+</section>
+<section>
 
 ## A short-and-sweet knowledge refresher
 
@@ -68,6 +76,9 @@ So, we are done with passing parameters right? Well, no! There still remains two
 
 * In higher-level languages, there is the concept of data types. Data types can be of various words (or bytes) in size. The latter scheme only works because we treat each parameter as a word. Therefore, only the address of the buffer and the number of parameters suffice to locate all the parameters. However, functions like `printf` accept a varying number parameters of **data types**. Hence the length information alone is not sufficient.
 * We know how to pass variable parameters in MIPS, but how can we do it in C/C++? The answer is the ellipsis `...`. However, this is still too high an abstraction barrier. We'll explore further down this barrier.
+
+</section>
+<section>
 
 ## Let's get dirty!
 
@@ -318,8 +329,6 @@ I want to prove in this section that the schema in the above diagram can really 
 * Write a non-variadic `printf` function and compiled it.
 * Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
 
-As the post is already long now, I'll leave this to another post.
+Here's a POC: [nonvariadic-printf](https://github.com/Huy-DNA/nonvariadic-printf)
 
-_Link to the next post: [part 2](/posts/printf-a-speculative-implementation-part-2)_
-
-Farewell!
+</section>

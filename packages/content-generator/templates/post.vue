@@ -1,11 +1,13 @@
 <template>
   <article class="post">
-    <h1 class="post__title">
-      {{ post.title }}
-    </h1>
-    <p class="post__date">
-      {{ createdAt }}
-    </p>
+    <div :style="{ backgroundColor: 'var(--very-light-neutral)', padding: '36px' }">
+      <h1 class="post__title">
+        {{ post.title }}
+      </h1>
+      <p class="post__date">
+        {{ createdAt }}
+      </p>
+    </div>
     <div>
       <main
         class="post__content"
@@ -17,10 +19,9 @@
 
 <style scoped>
   .post {
-    margin-left: min(5vw, 72px);
-    margin-right: min(5vw, 72px);
+    margin-top: 24px;
   }
-  
+
   .post__title {
     text-align: center;
     color: var(--violet);
@@ -35,7 +36,7 @@
   }
 
   .post__content {
-    margin-top: 36px;
+    margin-top: 24px;
     margin-bottom: 36px; 
   } 
 </style>
@@ -45,6 +46,13 @@
     h2 {
       color: var(--violet);
       font-size: var(--font-large);
+    }
+
+    section {
+      background-color: var(--very-light-neutral);
+      padding: 36px;
+      margin-top: 24px;
+      margin-bottom: 0;
     }
 
     h3 {
@@ -64,6 +72,7 @@
       line-height: 1.5;
       text-align: justify;
     }
+
   }
 </style>
 
