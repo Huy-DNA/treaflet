@@ -1,10 +1,13 @@
-# Writing for a Friend's Inquiry About Traits in Rust
+<section>
 
 Originally a Facebook post [here](https://www.facebook.com/photo/?fbid=1419295315340360&set=a.1076876269582268&notif_id=1707374922510581&notif_t=feedback_reaction_generic&ref=notif)
 
-Recently, a friend of mine (It's you, [Nguyễn Hồng Quân](https://www.facebook.com/quannhg) 🫵) asked a question like this: "I don't understand why Rust calls its interfaces 'traits'?"
+Recently, a friend of mine asked a question like this: "I don't understand why Rust calls its interfaces 'traits'?"
 
 With my limited knowledge and perhaps not complete accuracy, let me attempt to answer!
+
+</section>
+<section>
 
 ## Distinguishing Inheritance and Interfaces
 
@@ -32,6 +35,9 @@ In reality, the purpose of inheritance is primarily code reuse. However, in trad
 
 So, here, let's consider an interface as a collection of abilities for an object. Type `A` is a subtype of type `B` if `A`'s interface contains `B`'s interface.
 
+</section>
+<section>
+
 ## Trait
 
 Returning to the question: "Why is an interface in Rust called a 'trait'?"
@@ -43,6 +49,9 @@ In C++ and Java, a class can also be seen as a mechanism for implementing an int
 In reference [3], there's a passage that goes like this:
 
 "[…] we increasingly see the rise of 'class-less' interface abstractions cropping up across many languages: protocols (Swift), traits (Rust), interfaces (Go), concepts (C++), and contracts (Go)."
+
+</section>
+<section>
 
 ## Trait Implementation
 
@@ -86,6 +95,9 @@ In the `print_ln` function, when calling `println!`, the second pointer of `t` i
 
 In summary, it's somewhat like this, and upon searching, I found a diagram in [4] that closely resembles my mental model.
 
+</section>
+<section>
+
 ## References:
 
 [1]: Maurizio Gabbrielli, Simone Martini - Programming Languages:
@@ -96,3 +108,5 @@ Principles and Paradigms Second Edition - Springer
 [3]: [JonGoodwind's blog](https://pling.jondgoodwin.com/post/disinheriting-abstract-classes/?fbclid=IwAR1Wy14x-fZdBm4M7wjJXhWaYfJTTYKEIryashixihRiPkOD3iEs3xqMRog)
 
 [4]: [Oswalt's blog](https://oswalt.dev/2021/06/polymorphism-in-rust/)
+
+</section>

@@ -1,3 +1,5 @@
+<section>
+
 ## Introduction
 Yesterday (31/03/2023), my professor asked my class a simple question: "How can `printf` accept a variable number of parameters?". Well, the first thing that came to my mind was a concept called _variadic function_ in C. But even then, how does variadic and the magical ellipsis (`...`) really work? Till that point, I had not really thought much about those three magical dots and it was pretty much a black box to me.
 
@@ -6,6 +8,9 @@ As far as I know, in assembly languages, passing a variable number of parameters
 At the time I write this post, I still haven't looked into how variadic functions & `printf` really work in C/C++, so this is just my speculation! (Hence the name of the post)
 
 I want to strongly emphasize that: **This is wholy my speculation, to show that's there's no magic in this, not to explain how the real `printf` works**.
+
+</section>
+<section>
 
 ## Goals
 
@@ -16,6 +21,9 @@ I want to strongly emphasize that: **This is wholy my speculation, to show that'
   What do I mean by this? 
   
   In C++, there are some powerful compile-time features such as template & parameter pack which strongly resemble variadic functions.  **However**, implementations using those features do not accept a variable number of parameters _at runtime_, they just create that illusion. It's outside of the scope of this post to fully explain this, but the take-away note is that when you compile those implementations, the compiled code can only accept a finite number of parameters!
+
+</section>
+<section>
 
 ## A short-and-sweet knowledge refresher
 
@@ -67,7 +75,10 @@ Because these two choices of parameter passing differ in the parameters passed t
 So, we are done with passing parameters right? Well, no! There still remains two problems:
 
 * In higher-level languages, there is the concept of data types. Data types can be of various words (or bytes) in size. The latter scheme only works because we treat each parameter as a word. Therefore, only the address of the buffer and the number of parameters suffice to locate all the parameters. However, functions like `printf` accept a varying number parameters of **data types**. Hence the length information alone is not sufficient.
-* We know how to pass variable parameters in MIPS, but how can we do it in C/C++? The answer is the ellipsis `...`. However, this is still too high an abstraction barrier. We'll explore further down this barrier.
+* We know how to pass variable parameters in MIPS, but how can we do it in C/C++? The answer is the ellipsis (`...`). However, this is still too high an abstraction barrier. We'll explore further down this barrier.
+
+</section>
+<section>
 
 ## Let's get dirty!
 
@@ -137,15 +148,15 @@ Using the idea we have, we translate it to this:
 
     void* p_last = __internal_buffer;
 
-    //realign_pointer(p_last)
+    // realign_pointer(p_last)
     *(const char **)p_last = "Hello World";
     p_last = (char**)p_last + 1;
 
-    //realign_int(p_last)
+    // realign_int(p_last)
     *(int *)p_last = 86;
     p_last = (int*)p_last + 1;
 
-    //realign_floating(p_last)
+    // realign_floating(p_last)
     *(double *)p_last = (double)86.2003;
     p_last = (double*)p_last + 1;
 
@@ -241,85 +252,16 @@ After exitting the function, we deallocate the buffer.
 free(__internal_buffer);
 ```
 
-### It's real code now \*\*_ellipsis_\*\*
+### Implementation - PoC
 
-For simplicity, I only support 4 format specifiers, that is:
+I want to prove in this section that the schema in the above diagram can really work.
 
-* `%d`: an `int` goes into this.
-* `%s`: a `const char*` goes into this.
-* `%f`: a `double` goes into this (`float` is automatically promoted to `double` when passed through variadic). In non-variadic version, I only allow `double`, `float` would result in gibberish.
-* `%p`: a `const void*` pointer goes into this. The pointer is printed out in decimal.
+Here's the PoC: [nonvariadic-printf](https://github.com/Huy-DNA/nonvariadic-printf)
 
-#### The highly abstract variadic version
+What I did:
+* Write a non-variadic `printf` function and compile it.
+  There's a compiler wrapper-version of `printf` that looks variadic to users, we'll call it (`printf_var`). Users can supply `printf_var` any number of arguments.
+* Build an additional preprocessor (in Python code) that processes the client source code before calling the `g++` compiler.
+  What it does is basically detecting uses of `prinf_var` & replace its call by a block of code containing: the prolog, non-variadic `printf` call, the epilog.
 
-The variadic-version of C++ code is as follows.
-
-```C++
-#include <cstdlib>
-#include <string>
-#include <cstdarg>
-#include <cstring>
-#include <cstdio>
-
-void variadic_printf(const char* format, ...) {
-   va_list args;
-   va_start(args, format);
-
-   const char* format_pos = format;
-   int length = 0;
-   for (int i = 0; format[i] != '\0'; ++i) {
-       if (format[i] != '%')
-           length += 1;
-       else {
-           fwrite((const void*) format_pos, length, sizeof(char), stdout);
-           format_pos += length + 2;
-           length = 0;
-
-           ++i;
-           if (format[i] == '\0') {
-               fputs("Warning: trailing spurious trailing %", stderr);
-               putchar('%');
-               break;
-           }
-           else if (format[i] == 'd') {
-               int num = va_arg(args, int);
-               fputs(std::to_string(num).c_str(), stdout);
-           }
-           else if (format[i] == 'f') {
-               double num = va_arg(args, double);
-               fputs(std::to_string(num).c_str(), stdout); 
-           }
-           else if (format[i] == 's') {
-               const char* s = va_arg(args, char*);
-               fputs(s, stdout); 
-           }
-           else if (format[i] == 'p') {
-               long long p = (long long)va_arg(args, void*);
-               fputs(std::to_string(p).c_str(), stdout);
-           }
-           else {
-               fputs("Warning: Unknown format specifier, ignore", stderr);
-           }
-       }
-   }
-
-   fwrite(format_pos, length, sizeof(char), stdout);
-
-   va_end(args);
-}
-```
-
-Notice that there is some abstraction here -- the `va_list`, `v_start`, `va_arg` and `va_end` macros (however, safely implementing this is still a tedious task).
-
-#### The non-variadic version
-
-I want to prove in this section that the schema in the above diagram can really work. Therefore, I want to:
-* Build an additional preprocessor that process the client source code before calling the `g++` compiler.
-* Write a non-variadic `printf` function and compiled it.
-* Write some example client code calling my `printf` implementation, hand it to my preprocessor before compiling. It should work and look identical to the real `printf` from the client code's point of view.
-
-As the post is already long now, I'll leave this to another post.
-
-_Link to the next post: [part 2](/posts/printf-a-speculative-implementation-part-2)_
-
-Farewell!
+</section>

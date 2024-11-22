@@ -6,6 +6,7 @@
   --very-light-violet: #c641d0;
   --very-very-light-violet: #f6cefc;
 
+  --gray: #eee;
   --very-dark-neutral: #081b22;
   --dark-neutral: #1a2a37;
   --slightly-dark-neutral: #aaaaaa;
@@ -15,6 +16,7 @@
 
   --font-tiny: 8px;
   --font-very-small: 10px;
+  --font-slightly-small: 12px;
   --font-small: 16px;
   --font-normal: 18px;
   --font-slightly-large: 20px;

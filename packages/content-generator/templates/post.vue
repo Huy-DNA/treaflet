@@ -1,16 +1,13 @@
 <template>
   <article class="post">
-    <h1 class="post__title">
-      {{ post.title }}
-    </h1>
-    <p class="post__date">
-      {{ createdAt }}
-    </p>
-    <img
-      v-if="post.thumbnailUrl"
-      class="post__thumbnail"
-      :src="post.thumbnailUrl"
-    >
+    <div :style="{ backgroundColor: 'var(--very-light-neutral)', padding: '36px' }">
+      <h1 class="post__title">
+        {{ post.title }}
+      </h1>
+      <p class="post__date">
+        {{ createdAt }}
+      </p>
+    </div>
     <div>
       <main
         class="post__content"
@@ -22,10 +19,9 @@
 
 <style scoped>
   .post {
-    margin-left: min(5vw, 72px);
-    margin-right: min(5vw, 72px);
+    margin-top: 24px;
   }
-  
+
   .post__title {
     text-align: center;
     color: var(--violet);
@@ -39,12 +35,8 @@
     margin-top: 0;
   }
 
-  .post__thumbnail {
-    width: 100%;
-  }
-
   .post__content {
-    margin-top: 36px;
+    margin-top: 24px;
     margin-bottom: 36px; 
   } 
 </style>
@@ -54,6 +46,24 @@
     h2 {
       color: var(--violet);
       font-size: var(--font-large);
+    }
+
+    section {
+      background-color: var(--very-light-neutral);
+      padding: 36px;
+      margin-top: 24px;
+      margin-bottom: 0;
+    }
+
+    pre label {
+      display: block;
+      background-color: var(--neutral);
+      padding: 6px 6px 6px 8px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    code span, code {
+      font-family: 'Courier New', Courier, monospace !important;
     }
 
     h3 {
@@ -73,6 +83,7 @@
       line-height: 1.5;
       text-align: justify;
     }
+
   }
 </style>
 
@@ -86,7 +97,7 @@
     ogSiteName: 'Treaflet',
     description: {{{ summary }}},
     ogDescription: {{{ summary }}},
-    ogImage: {{{ thumbnailUrl }}},
+    ogImage: '/public/logos.jpeg',
     twitterCard: 'summary_large_image',
   });
 
@@ -97,7 +108,6 @@
     summary: {{{ summary }}},
     content: {{{ content }}},
     tags: {{{ tags }}},
-    thumbnailUrl: {{{ thumbnailUrl }}},
   });
 
   const createdAt = ref(DateTime.fromISO(post.value.createdAt).toFormat('DDD'));
