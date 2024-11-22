@@ -55,6 +55,17 @@
       margin-bottom: 0;
     }
 
+    pre label {
+      display: block;
+      background-color: var(--neutral);
+      padding: 6px 6px 6px 8px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    code span, code {
+      font-family: 'Courier New', Courier, monospace !important;
+    }
+
     h3 {
       color: var(--violet);
       font-size: var(--font-slightly-large);
