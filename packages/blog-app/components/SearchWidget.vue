@@ -45,7 +45,7 @@
   }
 
   .search-box__box {
-    width: 50vw;
+    width: 40vw;
     border: 1px var(--slightly-dark-neutral) solid;
     border-top: none;
     border-right: none;
