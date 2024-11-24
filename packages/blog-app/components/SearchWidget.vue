@@ -3,14 +3,16 @@
     class="wrapper"
   >
     <div class="search-box">
-      <font-awesome-icon :icon="faSearch" class="search-box__icon" width="16px" />
-      <input
-        type="search"
-        class="search-box__box"
-        placeholder="Search for a post"
-        v-model="searchText"
-        @input="onInput"
-      />
+      <div :style="{ position: 'relative' }">
+        <font-awesome-icon :icon="faSearch" class="search-box__icon" width="16px" />
+        <input
+          type="search"
+          class="search-box__box"
+          placeholder="Search for a post"
+          v-model="searchText"
+          @input="onInput"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +37,8 @@
   }
 
   .search-box {
-    position: relative;
+    display: flex;
+    justify-content: center;
   }
 
   .search-box__icon {
@@ -45,13 +48,13 @@
   }
 
   .search-box__box {
-    width: min(40vw, 90%);
+    width: max(400px, 50vw);
     border: 1px var(--slightly-dark-neutral) solid;
     border-top: none;
     border-right: none;
     border-left: none;
     padding: 8px;
-    padding-left: 36px;
+    padding-left: 48px;
     padding-right: 16px;
     font-size: var(--font-normal);
   }

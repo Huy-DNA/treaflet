@@ -1,19 +1,17 @@
 <template>
   <div class="card" role="button">
     <div class="card__content">
-      <h2 class="card__content__title">
-        {{ props.post.title }}
-      </h2>
+      <NuxtLink :to="`/posts/${props.post.slug}`" :style="{ 'text-decoration': 'none' }">
+        <h2 class="card__content__title">
+          {{ props.post.title }}
+        </h2>
+      </NuxtLink>
       <p class="card__content__date">
         {{ createdAt }}
       </p>
       <p class="card__content__summary">
         {{ props.post.summary }}
       </p>
-      <NuxtLink :to="`/posts/${props.post.slug}`">
-        See more
-      </NuxtLink>
-
     </div>
   </div>
 </template>
@@ -51,17 +49,13 @@ onMounted(() => {
 }
 
 .card__content__title {
-  color: var(--dark-neutral);
+  line-height: 1.3;
+  color: var(--dark-violet);
   text-decoration: none;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: var(--font-slightly-large);
   margin-top: 0;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
+  text-align: justify;
 }
 
 .card__content__date {
@@ -72,12 +66,7 @@ onMounted(() => {
 }
 
 .card__content__summary {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  overflow: hidden;
-  text-overflow: ellipsis;
   font-size: var(--font-normal);
+  text-align: justify;
 }
 </style>
