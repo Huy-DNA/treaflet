@@ -38,7 +38,7 @@
     min-height: 100vh;
     margin-right: auto;
     margin-left: auto;
-    width: 800px;
+    width: min(800px, 100vw);
   }
 
   .header {
