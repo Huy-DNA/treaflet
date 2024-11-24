@@ -30,7 +30,8 @@
   .wrapper {
     min-height: 100vh; 
     padding-bottom: 24px;
-    background-color: var(--gray);    
+    background-color: var(--gray);
+    overflow: auto;
   }
 
   .wrapper__content {
